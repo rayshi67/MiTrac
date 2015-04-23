@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jiesoft.android.app.micart"
+    package="com.jiesoft.android.app.mitrac"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -16,7 +16,7 @@
         android:label="@string/app_name" >
         
         <activity
-            android:name=".MainActivity"
+            android:name="com.jiesoft.android.app.mitrac.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +26,7 @@
         </activity>
         
         <activity
-            android:name="com.jiesoft.android.app.micart.auth.LoginActivity"
+            android:name="com.jiesoft.android.app.mitrac.auth.LoginActivity"
             android:label="User Login" >
         </activity>
         

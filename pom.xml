@@ -24,6 +24,7 @@
 	<modules>
 		<module>mitrac-common</module>
 		<module>mitrac-app-android</module>
+		<module>mitrac-server</module>
 	</modules>
 
 	<build>
@@ -55,5 +56,12 @@
 			<url>http://repo.spring.io/libs-release</url>
 		</repository>
 	</repositories>
-	
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-releases</id>
+			<url>http://repo.spring.io/libs-release</url>
+		</pluginRepository>
+	</pluginRepositories>
+		
 </project>
