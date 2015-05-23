@@ -27,7 +27,7 @@
         
         <activity
             android:name="com.jiesoft.android.app.mitrac.auth.LoginActivity"
-            android:label="User Login" >
+            android:label="MiTrac User Login" >
         </activity>
         
     </application>
