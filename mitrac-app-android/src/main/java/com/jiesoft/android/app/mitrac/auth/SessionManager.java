@@ -21,6 +21,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
  
+/**
+ * @author Ray Shi
+ */
+
 public class SessionManager {
     // Shared Preferences
     SharedPreferences pref;

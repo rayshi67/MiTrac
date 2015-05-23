@@ -27,7 +27,11 @@ import android.widget.Toast;
 import com.jiesoft.android.app.mitrac.R;
 import com.jiesoft.android.app.mitrac.auth.SessionManager;
 import com.jiesoft.android.app.mitrac.util.AlertDialogManager;
- 
+
+/**
+ * @author Ray Shi
+ */
+
 public class MainActivity extends Activity {
      
     // Alert Dialog Manager

@@ -21,10 +21,10 @@ import android.content.DialogInterface;
 import com.jiesoft.android.app.mitrac.R;
 
 /**
- * TODO remove me
- * @author rayshi
- *
+ * Test only
+ * @author Ray Shi
  */
+
 public class AlertDialogManager {
     /**
      * Function to display simple Alert Dialog
