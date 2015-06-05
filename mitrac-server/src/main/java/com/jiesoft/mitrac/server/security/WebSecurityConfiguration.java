@@ -14,11 +14,15 @@
 
 package com.jiesoft.mitrac.server.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * @author Ray Shi
@@ -27,27 +31,28 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	SecurityManager securityManager;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		// @formatter:off
-		auth.inMemoryAuthentication()
-			.withUser("roy")
-				.password("spring")
-				.roles("USER");
-		// @formatter:on
+		auth.userDetailsService(securityManager);
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		// @formatter:off
-		http
-			.authorizeRequests()
-				.antMatchers("/**")
+		http.authorizeRequests()
+				.antMatchers("/user/**")
 					.hasRole("USER")
 					.and()
 				.httpBasic();
-		// @formatter:on
+
+		http.authorizeRequests()
+				.antMatchers("/admin/**")
+					.hasRole("ADMIN")
+					.and()
+				.httpBasic();
 	}
 
 }

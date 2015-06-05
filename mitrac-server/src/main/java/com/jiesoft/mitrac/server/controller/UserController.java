@@ -29,19 +29,10 @@ import com.jiesoft.mitrac.common.Message;
  * @author Ray Shi
  */
 @Controller
-@RequestMapping("/*")
-public class HomeController {
+@RequestMapping("/user")
+public class UserController {
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
-		logger.info("Spring Android Basic Auth");
-		return "home";
-	}
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@RequestMapping(value = "/getmessage", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody Message getMessage() {
