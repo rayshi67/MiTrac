@@ -40,8 +40,8 @@ import org.springframework.web.client.RestTemplate;
 import com.jiesoft.mitrac.common.Message;
 
 import com.jiesoft.android.app.mitrac.R;
-import com.jiesoft.android.app.mitrac.MainActivity;
 import com.jiesoft.android.app.mitrac.common.AbstractAsyncActivity;
+import com.jiesoft.android.app.mitrac.controller.main.DemoActivity;
 import com.jiesoft.android.app.mitrac.util.AlertDialogManager;
 
 /**
@@ -110,7 +110,7 @@ public class LoginActivity extends AbstractAsyncActivity {
 
 		@Override
 		protected Message doInBackground(Void... params) {
-			final String url = getString(R.string.base_uri) + "/getmessage";
+			final String url = getString(R.string.base_uri) + "/user/getmessage";
 
 			// Populate the HTTP Basic Authentitcation header with the username and password
 			HttpAuthentication authHeader = new HttpBasicAuthentication(username, password);
@@ -146,7 +146,7 @@ public class LoginActivity extends AbstractAsyncActivity {
 				session.createLoginSession("Android Hive", "anroidhive@gmail.com");
 			
 				// Staring MainActivity
-				Intent i = new Intent(getApplicationContext(), MainActivity.class);
+				Intent i = new Intent(getApplicationContext(), DemoActivity.class);
 				startActivity(i);
 				finish();	
 			} else {

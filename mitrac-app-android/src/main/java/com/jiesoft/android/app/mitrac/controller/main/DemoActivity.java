@@ -12,7 +12,7 @@
  *      http://www.jiesoft.com
  */
 
-package com.jiesoft.android.app.mitrac;
+package com.jiesoft.android.app.mitrac.controller.main;
 
 import java.util.HashMap;
 
@@ -32,7 +32,7 @@ import com.jiesoft.android.app.mitrac.util.AlertDialogManager;
  * @author Ray Shi
  */
 
-public class MainActivity extends Activity {
+public class DemoActivity extends Activity {
      
     // Alert Dialog Manager
     AlertDialogManager alert = new AlertDialogManager();
@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_demo);
          
         // Session class instance
         session = new SessionManager(getApplicationContext());

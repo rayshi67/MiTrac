@@ -68,8 +68,8 @@ public class SecurityManager implements UserDetailsService {
 		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 		
         return new User(
-        		"roy",
-        		"spring", 
+        		"ray",
+        		"welcome1", 
         		true,
         		true, 
         		true, 
