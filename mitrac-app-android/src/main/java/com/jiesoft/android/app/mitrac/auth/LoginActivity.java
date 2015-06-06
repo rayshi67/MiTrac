@@ -41,7 +41,7 @@ import com.jiesoft.mitrac.common.Message;
 
 import com.jiesoft.android.app.mitrac.R;
 import com.jiesoft.android.app.mitrac.common.AbstractAsyncActivity;
-import com.jiesoft.android.app.mitrac.controller.main.DemoActivity;
+import com.jiesoft.android.app.mitrac.controller.demo.DemoActivity;
 import com.jiesoft.android.app.mitrac.util.AlertDialogManager;
 
 /**

@@ -12,7 +12,7 @@
  *      http://www.jiesoft.com
  */
 
-package com.jiesoft.android.app.mitrac.controller.main;
+package com.jiesoft.android.app.mitrac.controller.demo;
 
 import java.util.HashMap;
 

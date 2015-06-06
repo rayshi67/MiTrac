@@ -6,5 +6,7 @@
     <string name="username">Account Name</string>
     <string name="password">Password</string>
     <string name="submit">Login</string>
+    
+    <string name="map_not_ready">Map is not ready yet</string>
 
 </resources>
