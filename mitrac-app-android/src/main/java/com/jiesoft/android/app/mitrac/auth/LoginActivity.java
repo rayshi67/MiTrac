@@ -41,7 +41,7 @@ import com.jiesoft.mitrac.common.Message;
 
 import com.jiesoft.android.app.mitrac.R;
 import com.jiesoft.android.app.mitrac.common.AbstractAsyncActivity;
-import com.jiesoft.android.app.mitrac.controller.demo.DemoActivity;
+import com.jiesoft.android.app.mitrac.controller.main.MainActivity;
 import com.jiesoft.android.app.mitrac.util.AlertDialogManager;
 
 /**
@@ -70,7 +70,7 @@ public class LoginActivity extends AbstractAsyncActivity {
         // Session Manager
         session = new SessionManager(getApplicationContext());
         
-        Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
         
         
         // Login button
@@ -86,6 +86,10 @@ public class LoginActivity extends AbstractAsyncActivity {
 		});
     }
     
+    /**
+     * @deprecated used for testing only
+     * @param response
+     */
 	private void displayResponse(Message response) {
 		Toast.makeText(this, response.getText(), Toast.LENGTH_LONG).show();
 	}
@@ -139,14 +143,14 @@ public class LoginActivity extends AbstractAsyncActivity {
 		@Override
 		protected void onPostExecute(Message result) {
 			dismissProgressDialog();
-			displayResponse(result);
+			//displayResponse(result);
 			
 			if (100 == result.getId()) {
 				// FIXME
 				session.createLoginSession("Android Hive", "anroidhive@gmail.com");
 			
 				// Staring MainActivity
-				Intent i = new Intent(getApplicationContext(), DemoActivity.class);
+				Intent i = new Intent(getApplicationContext(), MainActivity.class);
 				startActivity(i);
 				finish();	
 			} else {

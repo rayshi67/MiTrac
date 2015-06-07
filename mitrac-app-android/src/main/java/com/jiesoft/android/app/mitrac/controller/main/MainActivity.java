@@ -56,6 +56,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.jiesoft.android.app.mitrac.R;
+import com.jiesoft.android.app.mitrac.auth.SessionManager;
 
 /**
  * @author Ray Shi
@@ -64,6 +65,9 @@ import com.jiesoft.android.app.mitrac.R;
 public class MainActivity extends FragmentActivity implements
         OnMarkerClickListener,
         OnMapReadyCallback {
+	
+    // Session Manager Class
+    private SessionManager session;
 
     private static final LatLng BRISBANE = new LatLng(-27.47093, 153.0235);
     private static final LatLng MELBOURNE = new LatLng(-37.81319, 144.96298);
@@ -93,6 +97,16 @@ public class MainActivity extends FragmentActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        // Session class instance
+        session = new SessionManager(getApplicationContext());
+        
+        /**
+         * Call this function whenever you want to check user login
+         * This will redirect user to LoginActivity is he is not
+         * logged in
+         * */
+        session.checkLogin();
 
         SupportMapFragment mapFragment =
                 (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
