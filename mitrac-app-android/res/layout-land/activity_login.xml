@@ -11,21 +11,6 @@
     	android:orientation="vertical"
     	android:descendantFocusability="beforeDescendants"
     	android:focusableInTouchMode="true">
-
-    <LinearLayout android:id="@+id/ll1"
-        	android:layout_width="match_parent"
-        	android:layout_height="match_parent"
-        	android:layout_weight="1"
-        	android:gravity="center_vertical|center_horizontal">
-
-       	<ImageView android:layout_width="wrap_content"
-            	android:layout_height="wrap_content"
-            	android:adjustViewBounds ="true"
-            	android:maxWidth="150dip"
-            	android:scaleType="fitXY"
-            	android:src="@drawable/jiesoft_logo" />
-
-    </LinearLayout>
     
     <LinearLayout
         	android:layout_width="match_parent"
@@ -98,7 +83,7 @@
     <LinearLayout android:id="@+id/ll3"
         	android:layout_width="match_parent"
         	android:layout_height="match_parent"
-        	android:layout_weight="1"
+        	android:layout_weight="1.8"
         	android:gravity="bottom|center_horizontal">
 
         <TextView android:layout_width="wrap_content"
