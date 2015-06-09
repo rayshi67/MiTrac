@@ -30,8 +30,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 
 import android.annotation.SuppressLint;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -40,10 +38,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -77,6 +78,11 @@ import com.jiesoft.android.app.mitrac.common.drawer.DrawerListAdapter;
 public class MainActivity extends FragmentActivity implements
         OnMarkerClickListener,
         OnMapReadyCallback {
+	
+	private static final int DRAW_ITEM_HOME = 0;
+	private static final int DRAW_ITEM_LOGOUT = 1;
+
+	private static final String TAG_MAP_FRAGMENT = "MAP-FRAGMENT";
 	
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -153,10 +159,10 @@ public class MainActivity extends FragmentActivity implements
         navDrawerItems = new ArrayList<DrawerItem>();
  
         // adding nav drawer items to array
-        // Logout
+        // MiTrac Home
         navDrawerItems.add(new DrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
-        // Find People
-        //navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
+        // Logout
+        navDrawerItems.add(new DrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
          
  
         // Recycle the typed array
@@ -192,17 +198,10 @@ public class MainActivity extends FragmentActivity implements
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
  
-//        if (savedInstanceState == null) {
-//            // on first time display view for first nav item
-//            displayView(0);
-//        }
-        
-        // display maps
-        
-        SupportMapFragment mapFragment =
-                (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        
-        mapFragment.getMapAsync(this);
+        if (savedInstanceState == null) {
+            // on first time display the view for the first draw item
+            displayView(DRAW_ITEM_HOME);
+        }
     }
 
     /**
@@ -214,10 +213,48 @@ public class MainActivity extends FragmentActivity implements
         public void onItemClick(AdapterView<?> parent, View view, int position,
                 long id) {
             // display view for selected nav drawer item
-        	onDrawItemClicked(position);
+        	displayView(position);
         }
     }
-    
+
+	/**
+	 * Diplaying fragment view for selected drawer list item
+	 * */
+	private void displayView(final int position) {
+		// update the main content by replacing fragments
+        Fragment fragment = null;
+        
+		switch (position) {
+		case DRAW_ITEM_HOME:
+			SupportMapFragment mapFragment = SupportMapFragment.newInstance();
+			mapFragment.getMapAsync(this);
+			fragment = mapFragment;
+			break;
+		case DRAW_ITEM_LOGOUT:
+            // Clear the session data
+            // This will clear all session data and 
+            // redirect user to LoginActivity
+            session.logoutUser();
+			break;
+		default:
+			break;
+		}
+		
+		if (fragment != null) {
+			FragmentManager fragmentManager = getSupportFragmentManager();
+			fragmentManager.beginTransaction().replace(R.id.frame_container, fragment, TAG_MAP_FRAGMENT).commit();
+
+			// update selected item and title, then close the drawer
+			mDrawerList.setItemChecked(position, true);
+			mDrawerList.setSelection(position);
+			setTitle(navMenuTitles[position]);
+			mDrawerLayout.closeDrawer(mDrawerList);
+		} else {
+			// error in creating fragment
+			Log.e("MainActivity", "Error in creating fragment");
+		}
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
@@ -248,22 +285,6 @@ public class MainActivity extends FragmentActivity implements
 		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
 		menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
-	}
-
-	/**
-	 * Diplaying fragment view for selected nav drawer list item
-	 * */
-	private void onDrawItemClicked(int position) {
-		switch (position) {
-		case 0:
-            // Clear the session data
-            // This will clear all session data and 
-            // redirect user to LoginActivity
-            session.logoutUser();
-			break;
-		default:
-			break;
-		}
 	}
 
 	@Override
@@ -310,7 +331,7 @@ public class MainActivity extends FragmentActivity implements
 
         // Pan to see all markers in view.
         // Cannot zoom to bounds until the map has a size.
-        final View mapView = getSupportFragmentManager().findFragmentById(R.id.map).getView();
+        final View mapView = getSupportFragmentManager().findFragmentByTag(TAG_MAP_FRAGMENT).getView();
         if (mapView.getViewTreeObserver().isAlive()) {
             mapView.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
                 @SuppressWarnings("deprecation") // We use the new method when supported
