@@ -17,6 +17,7 @@ package com.jiesoft.android.app.mitrac.auth;
 import java.util.Collections;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -65,7 +66,9 @@ public class LoginActivity extends AbstractAsyncActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login); 
+        setContentView(R.layout.activity_login);
+        
+        getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent))); 
         
         // Session Manager
         session = new SessionManager(getApplicationContext());

@@ -23,7 +23,7 @@
   	
     <application
         android:allowBackup="false"
-        android:icon="@drawable/spring_android"
+        android:icon="@drawable/jiesoft_logo"
         android:label="@string/app_name"
         android:hardwareAccelerated="true">
 
