@@ -32,8 +32,12 @@
          certificate which you will use to sign this application.
          See: https://developers.google.com/maps/documentation/android/start
          for instructions on how to get your own key. -->
+    <!-- Mac -->
     <meta-data android:name="com.google.android.maps.v2.API_KEY"
     	android:value="AIzaSyDEAdpe1EIJHdRdre9rUDlwsg0g-SGSD54"/>
+    <!-- Windows -->
+<!--     <meta-data android:name="com.google.android.maps.v2.API_KEY" -->
+<!--     	android:value="AIzaSyArH-4qhE9SQVeD8M-7sXMYD1b-06cd2sA"/> -->
     	
     <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
