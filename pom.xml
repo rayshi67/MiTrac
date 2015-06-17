@@ -21,7 +21,7 @@
 		<maven-eclipse-plugin-version>2.9</maven-eclipse-plugin-version>
 		<maven-jar-plugin-version>2.6</maven-jar-plugin-version>
 		
-		<org.springframework.version>4.0.3.RELEASE</org.springframework.version>
+		<org.springframework.boot-version>1.0.2.RELEASE</org.springframework.boot-version>
 	</properties>
 		
 	<modules>

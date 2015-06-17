@@ -14,7 +14,6 @@
 	<packaging>jar</packaging>
 	
 	<properties>
-		<org.springframework.boot-version>1.0.2.RELEASE</org.springframework.boot-version>
 		<start-class>com.jiesoft.mitrac.server.Application</start-class>
 	</properties>
 
