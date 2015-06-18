@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/06/2015 4:40:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.jiesoft.mitrac.domain.bo.SystemProps" table="SystemProps" catalog="gts">
+        <id name="propertyId" type="string">
+            <column name="propertyID" length="64" />
+            <generator class="assigned" />
+        </id>
+        <property name="dataType" type="string">
+            <column name="dataType" length="80" />
+        </property>
+        <property name="value" type="string">
+            <column name="value" length="65535" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="128" />
+        </property>
+        <property name="lastUpdateTime" type="java.lang.Integer">
+            <column name="lastUpdateTime" />
+        </property>
+        <property name="creationTime" type="java.lang.Integer">
+            <column name="creationTime" />
+        </property>
+    </class>
+</hibernate-mapping>

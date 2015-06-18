@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/06/2015 4:40:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.jiesoft.mitrac.domain.bo.Geozone" table="Geozone" catalog="gts">
+        <composite-id name="id" class="com.jiesoft.mitrac.domain.entity.GeozoneId">
+            <key-property name="accountId" type="string">
+                <column name="accountID" length="32" />
+            </key-property>
+            <key-property name="geozoneId" type="string">
+                <column name="geozoneID" length="32" />
+            </key-property>
+            <key-property name="sortId" type="int">
+                <column name="sortID" />
+            </key-property>
+        </composite-id>
+        <property name="minLatitude" type="java.lang.Double">
+            <column name="minLatitude" precision="22" scale="0" />
+        </property>
+        <property name="maxLatitude" type="java.lang.Double">
+            <column name="maxLatitude" precision="22" scale="0" />
+        </property>
+        <property name="minLongitude" type="java.lang.Double">
+            <column name="minLongitude" precision="22" scale="0" />
+        </property>
+        <property name="maxLongitude" type="java.lang.Double">
+            <column name="maxLongitude" precision="22" scale="0" />
+        </property>
+        <property name="zonePurposeId" type="string">
+            <column name="zonePurposeID" length="32" />
+        </property>
+        <property name="reverseGeocode" type="java.lang.Byte">
+            <column name="reverseGeocode" />
+        </property>
+        <property name="arrivalZone" type="java.lang.Byte">
+            <column name="arrivalZone" />
+        </property>
+        <property name="departureZone" type="java.lang.Byte">
+            <column name="departureZone" />
+        </property>
+        <property name="autoNotify" type="java.lang.Byte">
+            <column name="autoNotify" />
+        </property>
+        <property name="zoomRegion" type="java.lang.Byte">
+            <column name="zoomRegion" />
+        </property>
+        <property name="shapeColor" type="string">
+            <column name="shapeColor" length="12" />
+        </property>
+        <property name="zoneType" type="java.lang.Byte">
+            <column name="zoneType" />
+        </property>
+        <property name="radius" type="java.lang.Integer">
+            <column name="radius" />
+        </property>
+        <property name="vertices" type="string">
+            <column name="vertices" length="65535" />
+        </property>
+        <property name="latitude1" type="java.lang.Double">
+            <column name="latitude1" precision="22" scale="0" />
+        </property>
+        <property name="longitude1" type="java.lang.Double">
+            <column name="longitude1" precision="22" scale="0" />
+        </property>
+        <property name="latitude2" type="java.lang.Double">
+            <column name="latitude2" precision="22" scale="0" />
+        </property>
+        <property name="longitude2" type="java.lang.Double">
+            <column name="longitude2" precision="22" scale="0" />
+        </property>
+        <property name="latitude3" type="java.lang.Double">
+            <column name="latitude3" precision="22" scale="0" />
+        </property>
+        <property name="longitude3" type="java.lang.Double">
+            <column name="longitude3" precision="22" scale="0" />
+        </property>
+        <property name="latitude4" type="java.lang.Double">
+            <column name="latitude4" precision="22" scale="0" />
+        </property>
+        <property name="longitude4" type="java.lang.Double">
+            <column name="longitude4" precision="22" scale="0" />
+        </property>
+        <property name="latitude5" type="java.lang.Double">
+            <column name="latitude5" precision="22" scale="0" />
+        </property>
+        <property name="longitude5" type="java.lang.Double">
+            <column name="longitude5" precision="22" scale="0" />
+        </property>
+        <property name="latitude6" type="java.lang.Double">
+            <column name="latitude6" precision="22" scale="0" />
+        </property>
+        <property name="longitude6" type="java.lang.Double">
+            <column name="longitude6" precision="22" scale="0" />
+        </property>
+        <property name="latitude7" type="java.lang.Double">
+            <column name="latitude7" precision="22" scale="0" />
+        </property>
+        <property name="longitude7" type="java.lang.Double">
+            <column name="longitude7" precision="22" scale="0" />
+        </property>
+        <property name="latitude8" type="java.lang.Double">
+            <column name="latitude8" precision="22" scale="0" />
+        </property>
+        <property name="longitude8" type="java.lang.Double">
+            <column name="longitude8" precision="22" scale="0" />
+        </property>
+        <property name="latitude9" type="java.lang.Double">
+            <column name="latitude9" precision="22" scale="0" />
+        </property>
+        <property name="longitude9" type="java.lang.Double">
+            <column name="longitude9" precision="22" scale="0" />
+        </property>
+        <property name="latitude10" type="java.lang.Double">
+            <column name="latitude10" precision="22" scale="0" />
+        </property>
+        <property name="longitude10" type="java.lang.Double">
+            <column name="longitude10" precision="22" scale="0" />
+        </property>
+        <property name="clientUpload" type="java.lang.Byte">
+            <column name="clientUpload" />
+        </property>
+        <property name="clientId" type="java.lang.Integer">
+            <column name="clientID" />
+        </property>
+        <property name="groupId" type="string">
+            <column name="groupID" length="32" />
+        </property>
+        <property name="streetAddress" type="string">
+            <column name="streetAddress" length="90" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="40" />
+        </property>
+        <property name="stateProvince" type="string">
+            <column name="stateProvince" length="40" />
+        </property>
+        <property name="postalCode" type="string">
+            <column name="postalCode" length="16" />
+        </property>
+        <property name="country" type="string">
+            <column name="country" length="40" />
+        </property>
+        <property name="subdivision" type="string">
+            <column name="subdivision" length="32" />
+        </property>
+        <property name="contactPhone" type="string">
+            <column name="contactPhone" length="32" />
+        </property>
+        <property name="isActive" type="java.lang.Byte">
+            <column name="isActive" />
+        </property>
+        <property name="displayName" type="string">
+            <column name="displayName" length="40" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="128" />
+        </property>
+        <property name="lastUpdateTime" type="java.lang.Integer">
+            <column name="lastUpdateTime" />
+        </property>
+        <property name="creationTime" type="java.lang.Integer">
+            <column name="creationTime" />
+        </property>
+    </class>
+</hibernate-mapping>

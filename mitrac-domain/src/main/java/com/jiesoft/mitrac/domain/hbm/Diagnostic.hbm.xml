@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/06/2015 4:40:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.jiesoft.mitrac.domain.bo.Diagnostic" table="Diagnostic" catalog="gts">
+        <composite-id name="id" class="com.jiesoft.mitrac.domain.entity.DiagnosticId">
+            <key-property name="accountId" type="string">
+                <column name="accountID" length="32" />
+            </key-property>
+            <key-property name="deviceId" type="string">
+                <column name="deviceID" length="32" />
+            </key-property>
+            <key-property name="isError" type="byte">
+                <column name="isError" />
+            </key-property>
+            <key-property name="codeKey" type="int">
+                <column name="codeKey" />
+            </key-property>
+            <key-property name="timestamp" type="int">
+                <column name="timestamp" />
+            </key-property>
+        </composite-id>
+        <property name="binaryValue" type="binary">
+            <column name="binaryValue" />
+        </property>
+    </class>
+</hibernate-mapping>

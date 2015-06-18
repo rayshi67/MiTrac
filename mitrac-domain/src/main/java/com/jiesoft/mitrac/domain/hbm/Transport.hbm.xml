@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/06/2015 4:40:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.jiesoft.mitrac.domain.bo.Transport" table="Transport" catalog="gts">
+        <composite-id name="id" class="com.jiesoft.mitrac.domain.entity.TransportId">
+            <key-property name="accountId" type="string">
+                <column name="accountID" length="32" />
+            </key-property>
+            <key-property name="transportId" type="string">
+                <column name="transportID" length="32" />
+            </key-property>
+        </composite-id>
+        <property name="assocAccountId" type="string">
+            <column name="assocAccountID" length="32" />
+        </property>
+        <property name="assocDeviceId" type="string">
+            <column name="assocDeviceID" length="32" />
+        </property>
+        <property name="uniqueId" type="string">
+            <column name="uniqueID" length="40" />
+        </property>
+        <property name="deviceCode" type="string">
+            <column name="deviceCode" length="24" />
+        </property>
+        <property name="deviceType" type="string">
+            <column name="deviceType" length="24" />
+        </property>
+        <property name="serialNumber" type="string">
+            <column name="serialNumber" length="24" />
+        </property>
+        <property name="simPhoneNumber" type="string">
+            <column name="simPhoneNumber" length="24" />
+        </property>
+        <property name="smsEmail" type="string">
+            <column name="smsEmail" length="64" />
+        </property>
+        <property name="imeiNumber" type="string">
+            <column name="imeiNumber" length="24" />
+        </property>
+        <property name="lastInputState" type="java.lang.Integer">
+            <column name="lastInputState" />
+        </property>
+        <property name="lastOutputState" type="java.lang.Integer">
+            <column name="lastOutputState" />
+        </property>
+        <property name="ignitionIndex" type="java.lang.Short">
+            <column name="ignitionIndex" />
+        </property>
+        <property name="codeVersion" type="string">
+            <column name="codeVersion" length="32" />
+        </property>
+        <property name="featureSet" type="string">
+            <column name="featureSet" length="64" />
+        </property>
+        <property name="ipAddressValid" type="string">
+            <column name="ipAddressValid" length="128" />
+        </property>
+        <property name="ipAddressCurrent" type="string">
+            <column name="ipAddressCurrent" length="32" />
+        </property>
+        <property name="remotePortCurrent" type="java.lang.Short">
+            <column name="remotePortCurrent" />
+        </property>
+        <property name="listenPortCurrent" type="java.lang.Short">
+            <column name="listenPortCurrent" />
+        </property>
+        <property name="pendingPingCommand" type="string">
+            <column name="pendingPingCommand" length="65535" />
+        </property>
+        <property name="lastPingTime" type="java.lang.Integer">
+            <column name="lastPingTime" />
+        </property>
+        <property name="totalPingCount" type="java.lang.Short">
+            <column name="totalPingCount" />
+        </property>
+        <property name="maxPingCount" type="java.lang.Short">
+            <column name="maxPingCount" />
+        </property>
+        <property name="expectAck" type="java.lang.Byte">
+            <column name="expectAck" />
+        </property>
+        <property name="lastAckCommand" type="string">
+            <column name="lastAckCommand" length="65535" />
+        </property>
+        <property name="lastAckTime" type="java.lang.Integer">
+            <column name="lastAckTime" />
+        </property>
+        <property name="supportsDmtp" type="java.lang.Byte">
+            <column name="supportsDMTP" />
+        </property>
+        <property name="supportedEncodings" type="java.lang.Byte">
+            <column name="supportedEncodings" />
+        </property>
+        <property name="unitLimitInterval" type="java.lang.Short">
+            <column name="unitLimitInterval" />
+        </property>
+        <property name="maxAllowedEvents" type="java.lang.Short">
+            <column name="maxAllowedEvents" />
+        </property>
+        <property name="totalProfileMask" type="binary">
+            <column name="totalProfileMask" />
+        </property>
+        <property name="totalMaxConn" type="java.lang.Short">
+            <column name="totalMaxConn" />
+        </property>
+        <property name="totalMaxConnPerMin" type="java.lang.Short">
+            <column name="totalMaxConnPerMin" />
+        </property>
+        <property name="duplexProfileMask" type="binary">
+            <column name="duplexProfileMask" />
+        </property>
+        <property name="duplexMaxConn" type="java.lang.Short">
+            <column name="duplexMaxConn" />
+        </property>
+        <property name="duplexMaxConnPerMin" type="java.lang.Short">
+            <column name="duplexMaxConnPerMin" />
+        </property>
+        <property name="lastTotalConnectTime" type="java.lang.Integer">
+            <column name="lastTotalConnectTime" />
+        </property>
+        <property name="lastDuplexConnectTime" type="java.lang.Integer">
+            <column name="lastDuplexConnectTime" />
+        </property>
+        <property name="displayName" type="string">
+            <column name="displayName" length="40" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="128" />
+        </property>
+        <property name="lastUpdateTime" type="java.lang.Integer">
+            <column name="lastUpdateTime" />
+        </property>
+        <property name="creationTime" type="java.lang.Integer">
+            <column name="creationTime" />
+        </property>
+    </class>
+</hibernate-mapping>

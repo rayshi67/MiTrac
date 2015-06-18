@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/06/2015 4:40:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.jiesoft.mitrac.domain.bo.Account" table="Account" catalog="gts">
+        <id name="accountId" type="string">
+            <column name="accountID" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="accountType" type="java.lang.Short">
+            <column name="accountType" />
+        </property>
+        <property name="notifyEmail" type="string">
+            <column name="notifyEmail" length="128" />
+        </property>
+        <property name="allowNotify" type="java.lang.Byte">
+            <column name="allowNotify" />
+        </property>
+        <property name="speedUnits" type="java.lang.Byte">
+            <column name="speedUnits" />
+        </property>
+        <property name="distanceUnits" type="java.lang.Byte">
+            <column name="distanceUnits" />
+        </property>
+        <property name="volumeUnits" type="java.lang.Byte">
+            <column name="volumeUnits" />
+        </property>
+        <property name="pressureUnits" type="java.lang.Byte">
+            <column name="pressureUnits" />
+        </property>
+        <property name="economyUnits" type="java.lang.Byte">
+            <column name="economyUnits" />
+        </property>
+        <property name="temperatureUnits" type="java.lang.Byte">
+            <column name="temperatureUnits" />
+        </property>
+        <property name="currencyUnits" type="string">
+            <column name="currencyUnits" length="8" />
+        </property>
+        <property name="fuelCostPerLiter" type="java.lang.Double">
+            <column name="fuelCostPerLiter" precision="22" scale="0" />
+        </property>
+        <property name="latLonFormat" type="java.lang.Byte">
+            <column name="latLonFormat" />
+        </property>
+        <property name="geocoderMode" type="java.lang.Byte">
+            <column name="geocoderMode" />
+        </property>
+        <property name="privateLabelName" type="string">
+            <column name="privateLabelName" length="32" />
+        </property>
+        <property name="isBorderCrossing" type="java.lang.Byte">
+            <column name="isBorderCrossing" />
+        </property>
+        <property name="retainedEventAge" type="java.lang.Integer">
+            <column name="retainedEventAge" />
+        </property>
+        <property name="maximumDevices" type="java.lang.Integer">
+            <column name="maximumDevices" />
+        </property>
+        <property name="totalPingCount" type="java.lang.Short">
+            <column name="totalPingCount" />
+        </property>
+        <property name="maxPingCount" type="java.lang.Short">
+            <column name="maxPingCount" />
+        </property>
+        <property name="autoAddDevices" type="java.lang.Byte">
+            <column name="autoAddDevices" />
+        </property>
+        <property name="dcsPropertiesId" type="string">
+            <column name="dcsPropertiesID" length="32" />
+        </property>
+        <property name="smsEnabled" type="java.lang.Byte">
+            <column name="smsEnabled" />
+        </property>
+        <property name="smsProperties" type="string">
+            <column name="smsProperties" length="200" />
+        </property>
+        <property name="emailProperties" type="string">
+            <column name="emailProperties" length="250" />
+        </property>
+        <property name="expirationTime" type="java.lang.Integer">
+            <column name="expirationTime" />
+        </property>
+        <property name="allowWebService" type="java.lang.Byte">
+            <column name="allowWebService" />
+        </property>
+        <property name="defaultUser" type="string">
+            <column name="defaultUser" length="32" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="32" />
+        </property>
+        <property name="contactName" type="string">
+            <column name="contactName" length="64" />
+        </property>
+        <property name="contactPhone" type="string">
+            <column name="contactPhone" length="32" />
+        </property>
+        <property name="contactEmail" type="string">
+            <column name="contactEmail" length="128" />
+        </property>
+        <property name="timeZone" type="string">
+            <column name="timeZone" length="32" />
+        </property>
+        <property name="passwdChangeTime" type="java.lang.Integer">
+            <column name="passwdChangeTime" />
+        </property>
+        <property name="passwdQueryTime" type="java.lang.Integer">
+            <column name="passwdQueryTime" />
+        </property>
+        <property name="lastLoginTime" type="java.lang.Integer">
+            <column name="lastLoginTime" />
+        </property>
+        <property name="isActive" type="java.lang.Byte">
+            <column name="isActive" />
+        </property>
+        <property name="displayName" type="string">
+            <column name="displayName" length="40" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="128" />
+        </property>
+        <property name="notes" type="string">
+            <column name="notes" length="65535" />
+        </property>
+        <property name="lastUpdateTime" type="java.lang.Integer">
+            <column name="lastUpdateTime" />
+        </property>
+        <property name="creationTime" type="java.lang.Integer">
+            <column name="creationTime" />
+        </property>
+    </class>
+</hibernate-mapping>

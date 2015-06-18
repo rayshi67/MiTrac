@@ -26,6 +26,7 @@
 		
 	<modules>
 		<module>mitrac-common</module>
+		<module>mitrac-domain</module>
 <!-- 		<module>mitrac-app-android</module> -->
 		<module>mitrac-server</module>
 	</modules>

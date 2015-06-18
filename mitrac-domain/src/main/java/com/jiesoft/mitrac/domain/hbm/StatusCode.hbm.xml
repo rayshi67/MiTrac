@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/06/2015 4:40:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.jiesoft.mitrac.domain.bo.StatusCode" table="StatusCode" catalog="gts">
+        <composite-id name="id" class="com.jiesoft.mitrac.domain.entity.StatusCodeId">
+            <key-property name="accountId" type="string">
+                <column name="accountID" length="32" />
+            </key-property>
+            <key-property name="deviceId" type="string">
+                <column name="deviceID" length="32" />
+            </key-property>
+            <key-property name="statusCode" type="int">
+                <column name="statusCode" />
+            </key-property>
+        </composite-id>
+        <property name="statusName" type="string">
+            <column name="statusName" length="18" />
+        </property>
+        <property name="foregroundColor" type="string">
+            <column name="foregroundColor" length="10" />
+        </property>
+        <property name="backgroundColor" type="string">
+            <column name="backgroundColor" length="10" />
+        </property>
+        <property name="iconSelector" type="string">
+            <column name="iconSelector" length="128" />
+        </property>
+        <property name="iconName" type="string">
+            <column name="iconName" length="24" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="128" />
+        </property>
+        <property name="lastUpdateTime" type="java.lang.Integer">
+            <column name="lastUpdateTime" />
+        </property>
+        <property name="creationTime" type="java.lang.Integer">
+            <column name="creationTime" />
+        </property>
+    </class>
+</hibernate-mapping>

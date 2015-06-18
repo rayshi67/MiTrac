@@ -1,0 +1,319 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/06/2015 4:40:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.jiesoft.mitrac.domain.bo.Device" table="Device" catalog="gts">
+        <composite-id name="id" class="com.jiesoft.mitrac.domain.entity.DeviceId">
+            <key-property name="accountId" type="string">
+                <column name="accountID" length="32" />
+            </key-property>
+            <key-property name="deviceId" type="string">
+                <column name="deviceID" length="32" />
+            </key-property>
+        </composite-id>
+        <property name="groupId" type="string">
+            <column name="groupID" length="32" />
+        </property>
+        <property name="equipmentType" type="string">
+            <column name="equipmentType" length="40" />
+        </property>
+        <property name="equipmentStatus" type="string">
+            <column name="equipmentStatus" length="24" />
+        </property>
+        <property name="vehicleMake" type="string">
+            <column name="vehicleMake" length="40" />
+        </property>
+        <property name="vehicleModel" type="string">
+            <column name="vehicleModel" length="40" />
+        </property>
+        <property name="vehicleId" type="string">
+            <column name="vehicleID" length="24" />
+        </property>
+        <property name="licensePlate" type="string">
+            <column name="licensePlate" length="24" />
+        </property>
+        <property name="licenseExpire" type="java.lang.Integer">
+            <column name="licenseExpire" />
+        </property>
+        <property name="insuranceExpire" type="java.lang.Integer">
+            <column name="insuranceExpire" />
+        </property>
+        <property name="driverId" type="string">
+            <column name="driverID" length="32" />
+        </property>
+        <property name="driverStatus" type="java.lang.Integer">
+            <column name="driverStatus" />
+        </property>
+        <property name="fuelCapacity" type="java.lang.Double">
+            <column name="fuelCapacity" precision="22" scale="0" />
+        </property>
+        <property name="fuelEconomy" type="java.lang.Double">
+            <column name="fuelEconomy" precision="22" scale="0" />
+        </property>
+        <property name="fuelRatePerHour" type="java.lang.Double">
+            <column name="fuelRatePerHour" precision="22" scale="0" />
+        </property>
+        <property name="fuelCostPerLiter" type="java.lang.Double">
+            <column name="fuelCostPerLiter" precision="22" scale="0" />
+        </property>
+        <property name="fuelTankProfile" type="string">
+            <column name="fuelTankProfile" length="24" />
+        </property>
+        <property name="speedLimitKph" type="java.lang.Double">
+            <column name="speedLimitKPH" precision="22" scale="0" />
+        </property>
+        <property name="planDistanceKm" type="java.lang.Double">
+            <column name="planDistanceKM" precision="22" scale="0" />
+        </property>
+        <property name="installTime" type="java.lang.Integer">
+            <column name="installTime" />
+        </property>
+        <property name="resetTime" type="java.lang.Integer">
+            <column name="resetTime" />
+        </property>
+        <property name="expirationTime" type="java.lang.Integer">
+            <column name="expirationTime" />
+        </property>
+        <property name="uniqueId" type="string">
+            <column name="uniqueID" length="40" />
+        </property>
+        <property name="deviceCode" type="string">
+            <column name="deviceCode" length="24" />
+        </property>
+        <property name="deviceType" type="string">
+            <column name="deviceType" length="24" />
+        </property>
+        <property name="pushpinId" type="string">
+            <column name="pushpinID" length="32" />
+        </property>
+        <property name="displayColor" type="string">
+            <column name="displayColor" length="16" />
+        </property>
+        <property name="serialNumber" type="string">
+            <column name="serialNumber" length="24" />
+        </property>
+        <property name="simPhoneNumber" type="string">
+            <column name="simPhoneNumber" length="24" />
+        </property>
+        <property name="simId" type="string">
+            <column name="simID" length="24" />
+        </property>
+        <property name="smsEmail" type="string">
+            <column name="smsEmail" length="64" />
+        </property>
+        <property name="imeiNumber" type="string">
+            <column name="imeiNumber" length="24" />
+        </property>
+        <property name="dataKey" type="string">
+            <column name="dataKey" length="65535" />
+        </property>
+        <property name="ignitionIndex" type="java.lang.Short">
+            <column name="ignitionIndex" />
+        </property>
+        <property name="codeVersion" type="string">
+            <column name="codeVersion" length="32" />
+        </property>
+        <property name="featureSet" type="string">
+            <column name="featureSet" length="64" />
+        </property>
+        <property name="ipAddressValid" type="string">
+            <column name="ipAddressValid" length="128" />
+        </property>
+        <property name="lastTotalConnectTime" type="java.lang.Integer">
+            <column name="lastTotalConnectTime" />
+        </property>
+        <property name="lastDuplexConnectTime" type="java.lang.Integer">
+            <column name="lastDuplexConnectTime" />
+        </property>
+        <property name="pendingPingCommand" type="string">
+            <column name="pendingPingCommand" length="65535" />
+        </property>
+        <property name="lastPingTime" type="java.lang.Integer">
+            <column name="lastPingTime" />
+        </property>
+        <property name="totalPingCount" type="java.lang.Short">
+            <column name="totalPingCount" />
+        </property>
+        <property name="maxPingCount" type="java.lang.Short">
+            <column name="maxPingCount" />
+        </property>
+        <property name="commandStateMask" type="java.lang.Integer">
+            <column name="commandStateMask" />
+        </property>
+        <property name="expectAck" type="java.lang.Byte">
+            <column name="expectAck" />
+        </property>
+        <property name="expectAckCode" type="java.lang.Integer">
+            <column name="expectAckCode" />
+        </property>
+        <property name="lastAckCommand" type="string">
+            <column name="lastAckCommand" length="65535" />
+        </property>
+        <property name="lastAckTime" type="java.lang.Integer">
+            <column name="lastAckTime" />
+        </property>
+        <property name="dcsPropertiesId" type="string">
+            <column name="dcsPropertiesID" length="32" />
+        </property>
+        <property name="dcsConfigMask" type="java.lang.Integer">
+            <column name="dcsConfigMask" />
+        </property>
+        <property name="dcsConfigString" type="string">
+            <column name="dcsConfigString" length="80" />
+        </property>
+        <property name="dcsCommandHost" type="string">
+            <column name="dcsCommandHost" length="32" />
+        </property>
+        <property name="supportsDmtp" type="java.lang.Byte">
+            <column name="supportsDMTP" />
+        </property>
+        <property name="supportedEncodings" type="java.lang.Byte">
+            <column name="supportedEncodings" />
+        </property>
+        <property name="unitLimitInterval" type="java.lang.Short">
+            <column name="unitLimitInterval" />
+        </property>
+        <property name="maxAllowedEvents" type="java.lang.Short">
+            <column name="maxAllowedEvents" />
+        </property>
+        <property name="totalProfileMask" type="binary">
+            <column name="totalProfileMask" />
+        </property>
+        <property name="totalMaxConn" type="java.lang.Short">
+            <column name="totalMaxConn" />
+        </property>
+        <property name="totalMaxConnPerMin" type="java.lang.Short">
+            <column name="totalMaxConnPerMin" />
+        </property>
+        <property name="duplexProfileMask" type="binary">
+            <column name="duplexProfileMask" />
+        </property>
+        <property name="duplexMaxConn" type="java.lang.Short">
+            <column name="duplexMaxConn" />
+        </property>
+        <property name="duplexMaxConnPerMin" type="java.lang.Short">
+            <column name="duplexMaxConnPerMin" />
+        </property>
+        <property name="lastTcpSessionId" type="string">
+            <column name="lastTcpSessionID" length="32" />
+        </property>
+        <property name="ipAddressCurrent" type="string">
+            <column name="ipAddressCurrent" length="32" />
+        </property>
+        <property name="remotePortCurrent" type="java.lang.Short">
+            <column name="remotePortCurrent" />
+        </property>
+        <property name="listenPortCurrent" type="java.lang.Short">
+            <column name="listenPortCurrent" />
+        </property>
+        <property name="lastInputState" type="java.lang.Integer">
+            <column name="lastInputState" />
+        </property>
+        <property name="lastOutputState" type="java.lang.Integer">
+            <column name="lastOutputState" />
+        </property>
+        <property name="statusCodeState" type="java.lang.Integer">
+            <column name="statusCodeState" />
+        </property>
+        <property name="lastBatteryLevel" type="java.lang.Double">
+            <column name="lastBatteryLevel" precision="22" scale="0" />
+        </property>
+        <property name="lastFuelLevel" type="java.lang.Double">
+            <column name="lastFuelLevel" precision="22" scale="0" />
+        </property>
+        <property name="lastFuelTotal" type="java.lang.Double">
+            <column name="lastFuelTotal" precision="22" scale="0" />
+        </property>
+        <property name="lastOilLevel" type="java.lang.Double">
+            <column name="lastOilLevel" precision="22" scale="0" />
+        </property>
+        <property name="lastValidLatitude" type="java.lang.Double">
+            <column name="lastValidLatitude" precision="22" scale="0" />
+        </property>
+        <property name="lastValidLongitude" type="java.lang.Double">
+            <column name="lastValidLongitude" precision="22" scale="0" />
+        </property>
+        <property name="lastValidHeading" type="java.lang.Double">
+            <column name="lastValidHeading" precision="22" scale="0" />
+        </property>
+        <property name="lastValidSpeedKph" type="java.lang.Double">
+            <column name="lastValidSpeedKPH" precision="22" scale="0" />
+        </property>
+        <property name="lastGpstimestamp" type="java.lang.Integer">
+            <column name="lastGPSTimestamp" />
+        </property>
+        <property name="lastEventTimestamp" type="java.lang.Integer">
+            <column name="lastEventTimestamp" />
+        </property>
+        <property name="lastCellServingInfo" type="string">
+            <column name="lastCellServingInfo" length="100" />
+        </property>
+        <property name="lastDistanceKm" type="java.lang.Double">
+            <column name="lastDistanceKM" precision="22" scale="0" />
+        </property>
+        <property name="lastOdometerKm" type="java.lang.Double">
+            <column name="lastOdometerKM" precision="22" scale="0" />
+        </property>
+        <property name="odometerOffsetKm" type="java.lang.Double">
+            <column name="odometerOffsetKM" precision="22" scale="0" />
+        </property>
+        <property name="lastEngineOnHours" type="java.lang.Double">
+            <column name="lastEngineOnHours" precision="22" scale="0" />
+        </property>
+        <property name="lastEngineOnTime" type="java.lang.Integer">
+            <column name="lastEngineOnTime" />
+        </property>
+        <property name="lastEngineOffTime" type="java.lang.Integer">
+            <column name="lastEngineOffTime" />
+        </property>
+        <property name="lastEngineHours" type="java.lang.Double">
+            <column name="lastEngineHours" precision="22" scale="0" />
+        </property>
+        <property name="engineHoursOffset" type="java.lang.Double">
+            <column name="engineHoursOffset" precision="22" scale="0" />
+        </property>
+        <property name="lastIgnitionOnHours" type="java.lang.Double">
+            <column name="lastIgnitionOnHours" precision="22" scale="0" />
+        </property>
+        <property name="lastIgnitionOnTime" type="java.lang.Integer">
+            <column name="lastIgnitionOnTime" />
+        </property>
+        <property name="lastIgnitionOffTime" type="java.lang.Integer">
+            <column name="lastIgnitionOffTime" />
+        </property>
+        <property name="lastIgnitionHours" type="java.lang.Double">
+            <column name="lastIgnitionHours" precision="22" scale="0" />
+        </property>
+        <property name="lastStopTime" type="java.lang.Integer">
+            <column name="lastStopTime" />
+        </property>
+        <property name="lastStartTime" type="java.lang.Integer">
+            <column name="lastStartTime" />
+        </property>
+        <property name="lastMalfunctionLamp" type="java.lang.Byte">
+            <column name="lastMalfunctionLamp" />
+        </property>
+        <property name="lastFaultCode" type="string">
+            <column name="lastFaultCode" length="96" />
+        </property>
+        <property name="isActive" type="java.lang.Byte">
+            <column name="isActive" />
+        </property>
+        <property name="displayName" type="string">
+            <column name="displayName" length="40" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="128" />
+        </property>
+        <property name="notes" type="string">
+            <column name="notes" length="65535" />
+        </property>
+        <property name="lastUpdateTime" type="java.lang.Integer">
+            <column name="lastUpdateTime" />
+        </property>
+        <property name="creationTime" type="java.lang.Integer">
+            <column name="creationTime" />
+        </property>
+    </class>
+</hibernate-mapping>

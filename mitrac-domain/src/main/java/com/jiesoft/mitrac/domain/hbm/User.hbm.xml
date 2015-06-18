@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/06/2015 4:40:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.jiesoft.mitrac.domain.bo.User" table="User" catalog="gts">
+        <composite-id name="id" class="com.jiesoft.mitrac.domain.entity.UserId">
+            <key-property name="accountId" type="string">
+                <column name="accountID" length="32" />
+            </key-property>
+            <key-property name="userId" type="string">
+                <column name="userID" length="32" />
+            </key-property>
+        </composite-id>
+        <property name="userType" type="java.lang.Short">
+            <column name="userType" />
+        </property>
+        <property name="roleId" type="string">
+            <column name="roleID" length="32" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="32" />
+        </property>
+        <property name="gender" type="java.lang.Byte">
+            <column name="gender" />
+        </property>
+        <property name="notifyEmail" type="string">
+            <column name="notifyEmail" length="128" />
+        </property>
+        <property name="contactName" type="string">
+            <column name="contactName" length="64" />
+        </property>
+        <property name="contactPhone" type="string">
+            <column name="contactPhone" length="32" />
+        </property>
+        <property name="contactEmail" type="string">
+            <column name="contactEmail" length="64" />
+        </property>
+        <property name="timeZone" type="string">
+            <column name="timeZone" length="32" />
+        </property>
+        <property name="firstLoginPageId" type="string">
+            <column name="firstLoginPageID" length="24" />
+        </property>
+        <property name="preferredDeviceId" type="string">
+            <column name="preferredDeviceID" length="32" />
+        </property>
+        <property name="maxAccessLevel" type="java.lang.Short">
+            <column name="maxAccessLevel" />
+        </property>
+        <property name="passwdChangeTime" type="java.lang.Integer">
+            <column name="passwdChangeTime" />
+        </property>
+        <property name="passwdQueryTime" type="java.lang.Integer">
+            <column name="passwdQueryTime" />
+        </property>
+        <property name="lastLoginTime" type="java.lang.Integer">
+            <column name="lastLoginTime" />
+        </property>
+        <property name="isActive" type="java.lang.Byte">
+            <column name="isActive" />
+        </property>
+        <property name="displayName" type="string">
+            <column name="displayName" length="40" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="128" />
+        </property>
+        <property name="notes" type="string">
+            <column name="notes" length="65535" />
+        </property>
+        <property name="lastUpdateTime" type="java.lang.Integer">
+            <column name="lastUpdateTime" />
+        </property>
+        <property name="creationTime" type="java.lang.Integer">
+            <column name="creationTime" />
+        </property>
+    </class>
+</hibernate-mapping>
