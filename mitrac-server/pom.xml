@@ -32,8 +32,8 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.jiesoft.mitrac.domain</groupId>
-			<artifactId>mitrac-domain</artifactId>
+			<groupId>com.jiesoft.mitrac.common</groupId>
+			<artifactId>mitrac-common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	    <dependency>

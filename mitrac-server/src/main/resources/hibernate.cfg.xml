@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">gtsdemo1</property>
+        <property name="hibernate.connection.url">jdbc:mysql://gtsdemo.cy5xu1vhij4z.ap-southeast-2.rds.amazonaws.com:3306/gts</property>
+        <property name="hibernate.connection.username">gts</property>
+        
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/Account.hbm.xml" />   
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/AccountString.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/Device.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/DeviceGroup.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/DeviceList.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/Diagnostic.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/Driver.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/EventData.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/EventTemplate.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/Geozone.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/GroupList.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/PendingPacket.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/Property.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/Resource.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/Role.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/RoleAcl.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/StatusCode.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/SystemProps.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/Transport.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/UniqueXid.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/User.hbm.xml" />
+        <mapping resource="com/jiesoft/mitrac/domain/hbm/UserAcl.hbm.xml" />        
+    </session-factory>
+</hibernate-configuration>
