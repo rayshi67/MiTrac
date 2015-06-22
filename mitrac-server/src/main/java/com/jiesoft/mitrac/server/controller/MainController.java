@@ -24,19 +24,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.jiesoft.mitrac.common.Message;
 
 /**
- * Handles requests for the application home page.
+ * Handles requests for the MiTrac REST requests.
  * 
  * @author Ray Shi
  */
 @Controller
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/mitrac")
+public class MainController {
 
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
-	@RequestMapping(value = "/getmessage", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody Message getMessage() {
-		logger.info("Accessing protected resource");
+	@RequestMapping(value = "/devices", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody Message getDevices() {
+		logger.debug("call getDevices:");
+		
 		return new Message(100, "Congratulations!", "You have accessed a Basic Auth protected resource.");
 	}
 

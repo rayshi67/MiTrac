@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Mac -->
-    <string name="base_uri">http://192.168.1.100:8080/</string>
-    <!-- Windows -->
-<!--     <string name="base_uri">http://192.168.1.198:8080/</string> -->
+    <!-- server context -->
+    
+    <!-- Mac box-->
+    <string name="base_uri">http://192.168.1.100:8080/mitrac</string>
+    <!-- Windows box -->
+<!--     <string name="base_uri">http://192.168.1.198:8080/mitrac</string> -->
+
+	<!-- REST contexts -->
+	
+	<string name="context_devices">/devices</string>
+	
 </resources>

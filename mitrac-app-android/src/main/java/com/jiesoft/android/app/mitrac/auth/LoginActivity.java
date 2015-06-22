@@ -84,7 +84,7 @@ public class LoginActivity extends AbstractAsyncActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
 			@Override
         	public void onClick(View v) {
-				new FetchSecuredResourceTask().execute();
+				new GetUserDevicesTask().execute();
 			}
 		});
     }
@@ -97,7 +97,7 @@ public class LoginActivity extends AbstractAsyncActivity {
 		Toast.makeText(this, response.getText(), Toast.LENGTH_LONG).show();
 	}
 	
-	private class FetchSecuredResourceTask extends AsyncTask<Void, Void, Message> {
+	private class GetUserDevicesTask extends AsyncTask<Void, Void, Message> {
 
 		private String username;
 
@@ -117,7 +117,7 @@ public class LoginActivity extends AbstractAsyncActivity {
 
 		@Override
 		protected Message doInBackground(Void... params) {
-			final String url = getString(R.string.base_uri) + "/user/getmessage";
+			final String url = getString(R.string.base_uri) + getString(R.string.context_devices);
 
 			// Populate the HTTP Basic Authentitcation header with the username and password
 			HttpAuthentication authHeader = new HttpBasicAuthentication(username, password);

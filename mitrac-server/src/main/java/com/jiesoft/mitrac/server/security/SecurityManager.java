@@ -65,7 +65,7 @@ public class SecurityManager implements UserDetailsService {
 //		return buildUserForAuthentication(user, authorities);
         
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+		authorities.add(new SimpleGrantedAuthority("ROLE_REST"));
 		
         return new User(
         		"ray",
