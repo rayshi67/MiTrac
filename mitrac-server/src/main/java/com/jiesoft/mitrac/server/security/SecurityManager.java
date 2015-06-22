@@ -37,7 +37,6 @@ import com.jiesoft.mitrac.dao.UserDao;
  * @author Ray Shi
  */
 
-//@Service("securityManager")
 public class SecurityManager implements UserDetailsService {
 
     private static Log LOG = LogFactory.getLog(SecurityManager.class);
@@ -56,20 +55,40 @@ public class SecurityManager implements UserDetailsService {
     		throws UsernameNotFoundException {
     	
         if (LOG.isDebugEnabled()) {
-            LOG.debug("loadUserByUsername called [username=" + username + "]");
+            LOG.debug("called loadUserByUsername");
+            LOG.debug("username=" + username);
         }
+        
+        // check if both username and password exist
+        
+        // get the user and account name
+        
+        
+        
+        // load user details
 
-//		com.model.User user = userDao.findByUserName(username);
+        /*com.jiesoft.mitrac.domain.bo.User user = userDao.findByUserName(username);
+        
+        if (user == null) {
+        	final String msg = String.format("username [%s] not found", username);
+        	LOG.info(msg);
+        	throw new UsernameNotFoundException(msg);
+        }*/
+        
+        // load roles
+        
 //		List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRole());
 // 
 //		return buildUserForAuthentication(user, authorities);
         
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		
+		// add role required to access the REST urls
 		authorities.add(new SimpleGrantedAuthority("ROLE_REST"));
 		
         return new User(
         		"ray",
-        		"welcome1", 
+        		"5f4dcc3b5aa765d61d8327deb882cf99", 
         		true,
         		true, 
         		true, 

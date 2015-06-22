@@ -26,8 +26,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @ComponentScan("com.jiesoft.mitrac")
 @EnableAutoConfiguration
-@ImportResource("spring-database.xml")
 @EnableTransactionManagement
+@ImportResource("spring-database.xml")
 public class Application {
 
 	public static void main(String[] args) {
