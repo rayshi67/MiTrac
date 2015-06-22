@@ -29,20 +29,20 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jiesoft.mitrac.dao.UserDao;
+
 /**
  * The security manager that performs all the necessary authentication and authorization.
  *
  * @author Ray Shi
  */
 
-@Service("securityManager")
+//@Service("securityManager")
 public class SecurityManager implements UserDetailsService {
 
     private static Log LOG = LogFactory.getLog(SecurityManager.class);
     
-    /** The user details service */
-//    @Autowired
-//    private UserDao userDao;
+    private UserDao userDao;
 
     /**
      * Default constructor.
@@ -97,5 +97,9 @@ public class SecurityManager implements UserDetailsService {
 // 
 //		return Result;
 //	}
+    
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
 
 }

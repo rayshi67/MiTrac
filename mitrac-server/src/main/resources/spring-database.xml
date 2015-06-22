@@ -1,0 +1,88 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+			http://www.springframework.org/schema/aop 
+			http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+			http://www.springframework.org/schema/tx
+    		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+ 
+	<!-- MySQL data source -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://192.168.1.109:3306/gts" />
+		<property name="username" value="gts" />
+		<property name="password" value="opengts" />
+	</bean>
+ 
+	<!-- Hibernate session factory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingResources">
+			<list>
+		        <value>com/jiesoft/mitrac/domain/hbm/Account.hbm.xml</value>   
+		        <value>com/jiesoft/mitrac/domain/hbm/AccountString.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/Device.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/DeviceGroup.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/DeviceList.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/Diagnostic.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/Driver.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/EventData.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/EventTemplate.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/Geozone.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/GroupList.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/PendingPacket.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/Property.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/Resource.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/Role.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/RoleAcl.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/StatusCode.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/SystemProps.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/Transport.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/UniqueXid.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/User.hbm.xml</value>
+		        <value>com/jiesoft/mitrac/domain/hbm/UserAcl.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+		    <props>
+			<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+			<prop key="hibernate.format_sql">true</prop>
+			<prop key="hibernate.show_sql">true</prop>
+		    </props>
+		</property>
+	</bean>
+
+	<!-- MUST have transaction manager, using aop and aspects  -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+ 
+	<tx:advice id="securityTxdvice" transaction-manager="transactionManager">
+	    <tx:attributes>
+			<tx:method name="load*" read-only="true" />
+			<tx:method name="*" propagation="NEVER" />
+	    </tx:attributes>
+	</tx:advice>
+ 
+	<aop:config>
+	    <aop:pointcut id="securityManagerPointCut"
+				expression="execution(* com.jiesoft.mitrac.server.security.SecurityManager.*(..))" />
+	    
+	    <aop:advisor advice-ref="securityTxdvice" pointcut-ref="securityManagerPointCut" />
+	</aop:config>
+ 
+	<!-- security manager -->
+	<bean id="securityManager" class="com.jiesoft.mitrac.server.security.SecurityManager">
+		<property name="userDao" ref="userDao" />
+	</bean>
+	
+	<!-- DAOs -->
+	<bean id="userDao" class="com.jiesoft.mitrac.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+</beans>

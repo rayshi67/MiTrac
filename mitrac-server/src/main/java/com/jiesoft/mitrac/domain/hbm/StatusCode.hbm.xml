@@ -4,7 +4,7 @@
 <!-- Generated 18/06/2015 4:40:45 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.jiesoft.mitrac.domain.bo.StatusCode" table="StatusCode" catalog="gts">
-        <composite-id name="id" class="com.jiesoft.mitrac.domain.entity.StatusCodeId">
+        <composite-id name="id" class="com.jiesoft.mitrac.domain.bo.StatusCodeId">
             <key-property name="accountId" type="string">
                 <column name="accountID" length="32" />
             </key-property>

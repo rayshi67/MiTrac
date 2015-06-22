@@ -15,6 +15,9 @@
 	
 	<properties>
 		<start-class>com.jiesoft.mitrac.server.Application</start-class>
+		
+		<org.hibernate.version>4.3.10.Final</org.hibernate.version>
+		<mysql.connector.version>5.1.35</mysql.connector.version>
 	</properties>
 
 	<dependencyManagement>
@@ -51,7 +54,35 @@
 			<artifactId>spring-tx</artifactId>
 		</dependency>
 		
+		<!-- Spring aspects -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+		</dependency>
+		
+		<!-- spring + hibernate + mysql -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${org.hibernate.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		
 		<!-- apache commons -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>

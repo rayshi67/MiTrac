@@ -3,8 +3,8 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 18/06/2015 4:40:45 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.jiesoft.mitrac.domain.DeviceList" table="DeviceList" catalog="gts">
-        <composite-id name="id" class="com.jiesoft.mitrac.domain.entity.DeviceListId">
+    <class name="com.jiesoft.mitrac.domain.bo.DeviceList" table="DeviceList" catalog="gts">
+        <composite-id name="id" class="com.jiesoft.mitrac.domain.bo.DeviceListId">
             <key-property name="accountId" type="string">
                 <column name="accountID" length="32" />
             </key-property>
