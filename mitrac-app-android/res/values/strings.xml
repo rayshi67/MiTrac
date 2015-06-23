@@ -3,7 +3,7 @@
 
     <string name="app_name">MiTrac</string>
     <string name="org_name">Jiesoft Consulting</string>
-    <string name="username">Account Name</string>
+    <string name="username">User@Account</string>
     <string name="password">Password</string>
     <string name="submit">Login</string>
     <string name="label_activity_home">Home</string>

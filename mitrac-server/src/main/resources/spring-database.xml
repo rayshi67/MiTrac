@@ -59,27 +59,18 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
  
-<!-- 	<tx:advice id="securityTxdvice" transaction-manager="transactionManager"> -->
-<!-- 	    <tx:attributes> -->
-<!-- 			<tx:method name="load*" read-only="true" /> -->
-<!-- 			<tx:method name="*" propagation="NEVER" /> -->
-<!-- 	    </tx:attributes> -->
-<!-- 	</tx:advice> -->
- 
-<!-- 	<aop:config> -->
-<!-- 	    <aop:pointcut id="securityManagerPointCut" -->
-<!-- 				expression="execution(* com.jiesoft.mitrac.server.security.SecurityManager.*(..))" /> -->
-	    
-<!-- 	    <aop:advisor advice-ref="securityTxdvice" pointcut-ref="securityManagerPointCut" /> -->
-<!-- 	</aop:config> -->
- 
 	<!-- security manager -->
 	<bean id="securityManager" class="com.jiesoft.mitrac.server.security.SecurityManager">
 		<property name="userDao" ref="userDao" />
+		<property name="accountDao" ref="accountDao" />
 	</bean>
 	
 	<!-- DAOs -->
 	<bean id="userDao" class="com.jiesoft.mitrac.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="accountDao" class="com.jiesoft.mitrac.dao.impl.AccountDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 

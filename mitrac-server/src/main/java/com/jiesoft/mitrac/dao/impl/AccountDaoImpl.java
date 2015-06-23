@@ -18,32 +18,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.jiesoft.mitrac.dao.AbstractDao;
-import com.jiesoft.mitrac.dao.UserDao;
-import com.jiesoft.mitrac.domain.bo.User;
+import com.jiesoft.mitrac.dao.AccountDao;
+import com.jiesoft.mitrac.domain.bo.Account;
 
 /**
  * @author Ray Shi
  */
 
-public class UserDaoImpl extends AbstractDao implements UserDao {
+public class AccountDaoImpl extends AbstractDao implements AccountDao {
 
-	public UserDaoImpl() {
+	public AccountDaoImpl() {
 		super();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public User findByUserName(final String username) {
-		User retval = null;
+	public Account findByAccountName(final String accountName) {
+		Account retval = null;
 		
-		List<User> users = new ArrayList<User>();
+		List<Account> accounts = new ArrayList<Account>();
 		 
-		users = sessionFactory.getCurrentSession()
-				.createQuery("FROM User WHERE userId = :userId")
-				.setParameter("userId", username).list();
+		accounts = sessionFactory.getCurrentSession()
+				.createQuery("FROM Account WHERE accountId = :accountId")
+				.setParameter("accountId", accountName).list();
  
-		if (users.size() > 0) {
-			retval = users.get(0);
+		if (accounts.size() > 0) {
+			retval = accounts.get(0);
 		}
 		
 		return retval;
