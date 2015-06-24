@@ -38,7 +38,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
-import com.jiesoft.mitrac.common.Message;
+import com.jiesoft.mitrac.message.Message;
 
 import com.jiesoft.android.app.mitrac.R;
 import com.jiesoft.android.app.mitrac.common.AbstractAsyncActivity;

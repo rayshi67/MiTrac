@@ -11,9 +11,11 @@
  *
  *      http://www.jiesoft.com
  */
-package com.jiesoft.mitrac.common;
+package com.jiesoft.mitrac.message;
 
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.jiesoft.mitrac.common.AbstractMessage;
 
 /**
  * Message class.
@@ -22,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 
 @XmlRootElement(name = "message")
-public class Message {
+public class Message extends AbstractMessage {
 	private long id;
 
 	private String subject;
@@ -30,6 +32,7 @@ public class Message {
 	private String text;
 
 	public Message() {
+		super();
 	}
 
 	public Message(long id, String subject, String text) {
