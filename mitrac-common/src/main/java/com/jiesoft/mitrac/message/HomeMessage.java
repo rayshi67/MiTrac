@@ -24,18 +24,18 @@ import com.jiesoft.mitrac.common.AbstractMessage;
  */
 
 @XmlRootElement(name = "message")
-public class Message extends AbstractMessage {
+public class HomeMessage extends AbstractMessage {
 	private long id;
 
 	private String subject;
 
 	private String text;
 
-	public Message() {
+	public HomeMessage() {
 		super();
 	}
 
-	public Message(long id, String subject, String text) {
+	public HomeMessage(long id, String subject, String text) {
 		this.id = id;
 		this.subject = subject;
 		this.text = text;

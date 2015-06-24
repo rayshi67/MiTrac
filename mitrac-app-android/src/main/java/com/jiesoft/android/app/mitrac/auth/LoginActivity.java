@@ -38,7 +38,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
-import com.jiesoft.mitrac.message.Message;
+import com.jiesoft.mitrac.message.HomeMessage;
 
 import com.jiesoft.android.app.mitrac.R;
 import com.jiesoft.android.app.mitrac.common.AbstractAsyncActivity;
@@ -93,11 +93,11 @@ public class LoginActivity extends AbstractAsyncActivity {
      * @deprecated used for testing only
      * @param response
      */
-	private void displayResponse(Message response) {
+	private void displayResponse(HomeMessage response) {
 		Toast.makeText(this, response.getText(), Toast.LENGTH_LONG).show();
 	}
 	
-	private class GetUserDevicesTask extends AsyncTask<Void, Void, Message> {
+	private class GetUserDevicesTask extends AsyncTask<Void, Void, HomeMessage> {
 
 		private String username;
 
@@ -116,7 +116,7 @@ public class LoginActivity extends AbstractAsyncActivity {
 		}
 
 		@Override
-		protected Message doInBackground(Void... params) {
+		protected HomeMessage doInBackground(Void... params) {
 			final String url = getString(R.string.base_uri) + getString(R.string.context_devices);
 
 			// Populate the HTTP Basic Authentitcation header with the username and password
@@ -132,19 +132,19 @@ public class LoginActivity extends AbstractAsyncActivity {
 			try {
 				// Make the network request
 				Log.d(TAG, url);
-				ResponseEntity<Message> response = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<Object>(requestHeaders), Message.class);
+				ResponseEntity<HomeMessage> response = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<Object>(requestHeaders), HomeMessage.class);
 				return response.getBody();
 			} catch (HttpClientErrorException e) {
 				Log.e(TAG, e.getLocalizedMessage(), e);
-				return new Message(0, e.getStatusText(), e.getLocalizedMessage());
+				return new HomeMessage(0, e.getStatusText(), e.getLocalizedMessage());
 			} catch (ResourceAccessException e) {
 				Log.e(TAG, e.getLocalizedMessage(), e);
-				return new Message(0, e.getClass().getSimpleName(), e.getLocalizedMessage());
+				return new HomeMessage(0, e.getClass().getSimpleName(), e.getLocalizedMessage());
 			}
 		}
 
 		@Override
-		protected void onPostExecute(Message result) {
+		protected void onPostExecute(HomeMessage result) {
 			dismissProgressDialog();
 			//displayResponse(result);
 			
