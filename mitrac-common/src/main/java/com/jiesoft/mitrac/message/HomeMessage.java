@@ -21,6 +21,7 @@ import com.jiesoft.mitrac.common.AbstractMessage;
 import com.jiesoft.mitrac.common.ResultCodeEnum;
 import com.jiesoft.mitrac.domain.bo.Account;
 import com.jiesoft.mitrac.domain.bo.Device;
+import com.jiesoft.mitrac.domain.bo.DeviceGroup;
 import com.jiesoft.mitrac.domain.bo.User;
 
 /**
@@ -34,6 +35,8 @@ public class HomeMessage extends AbstractMessage {
 	private Account account;
 
 	private User user;
+	
+	private List<DeviceGroup> deviceGroups;
 
 	private List<Device> devices;
 
@@ -59,6 +62,14 @@ public class HomeMessage extends AbstractMessage {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<DeviceGroup> getDeviceGroups() {
+		return deviceGroups;
+	}
+
+	public void setDeviceGroups(List<DeviceGroup> deviceGroups) {
+		this.deviceGroups = deviceGroups;
 	}
 
 	public List<Device> getDevices() {

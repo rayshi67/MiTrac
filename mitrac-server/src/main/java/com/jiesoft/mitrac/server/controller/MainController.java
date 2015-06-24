@@ -86,7 +86,12 @@ public class MainController {
 		message.setUser(user);
 		message.setAccount(account);
 		
-		// TODO load devices
+		// FIXME load devices
+		
+		// 1) if user exists, get DeviceGroup ID from the GroupList table if any,
+		// 1.1) otherwise fall back to all the DeviceGroup IDs available to its account in the DeviceGroup table
+		// 2) if user does not exist, same as 1.1 
+		
 		
 		return message;
 	}

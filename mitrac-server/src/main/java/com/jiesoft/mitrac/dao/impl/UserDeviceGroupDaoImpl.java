@@ -17,33 +17,28 @@ package com.jiesoft.mitrac.dao.impl;
 import java.util.List;
 
 import com.jiesoft.mitrac.dao.AbstractDao;
-import com.jiesoft.mitrac.dao.UserDao;
-import com.jiesoft.mitrac.domain.bo.User;
+import com.jiesoft.mitrac.dao.UserDeviceGroupDao;
+import com.jiesoft.mitrac.domain.bo.DeviceGroup;
 
 /**
  * @author Ray Shi
  */
 
-public class UserDaoImpl extends AbstractDao implements UserDao {
+public class UserDeviceGroupDaoImpl extends AbstractDao implements UserDeviceGroupDao {
 
-	public UserDaoImpl() {
+	public UserDeviceGroupDaoImpl() {
 		super();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public User findByUserName(final String username) {
-		User retval = null;
+	public List<DeviceGroup> findDeviceGroupsByUserName(final String username) {
 		
-		List<User> users = sessionFactory.getCurrentSession()
-				.createQuery("FROM User WHERE userId = :userId")
+		// FIXME
+		return sessionFactory.getCurrentSession()
+				.createQuery("FROM GroupList WHERE userId = :userId")
 				.setParameter("userId", username).list();
- 
-		if (users.size() > 0) {
-			retval = users.get(0);
-		}
-		
-		return retval;
+
 	}
 
 }

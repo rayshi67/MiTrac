@@ -14,7 +14,6 @@
 
 package com.jiesoft.mitrac.dao.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.jiesoft.mitrac.dao.AbstractDao;
@@ -36,9 +35,7 @@ public class AccountDaoImpl extends AbstractDao implements AccountDao {
 	public Account findByAccountName(final String accountName) {
 		Account retval = null;
 		
-		List<Account> accounts = new ArrayList<Account>();
-		 
-		accounts = sessionFactory.getCurrentSession()
+		List<Account> accounts = sessionFactory.getCurrentSession()
 				.createQuery("FROM Account WHERE accountId = :accountId")
 				.setParameter("accountId", accountName).list();
  
