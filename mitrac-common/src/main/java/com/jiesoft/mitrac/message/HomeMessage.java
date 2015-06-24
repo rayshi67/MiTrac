@@ -23,7 +23,7 @@ import com.jiesoft.mitrac.common.AbstractMessage;
  * @author Ray Shi
  */
 
-@XmlRootElement(name = "message")
+@XmlRootElement(name = "homeMessage")
 public class HomeMessage extends AbstractMessage {
 	private long id;
 

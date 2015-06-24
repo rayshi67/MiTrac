@@ -84,7 +84,7 @@ public class LoginActivity extends AbstractAsyncActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
 			@Override
         	public void onClick(View v) {
-				new GetUserDevicesTask().execute();
+				new GetAccountUserDevicesTask().execute();
 			}
 		});
     }
@@ -97,7 +97,7 @@ public class LoginActivity extends AbstractAsyncActivity {
 		Toast.makeText(this, response.getText(), Toast.LENGTH_LONG).show();
 	}
 	
-	private class GetUserDevicesTask extends AsyncTask<Void, Void, HomeMessage> {
+	private class GetAccountUserDevicesTask extends AsyncTask<Void, Void, HomeMessage> {
 
 		private String username;
 

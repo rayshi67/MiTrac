@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jiesoft.mitrac.common.AbstractMessage;
 import com.jiesoft.mitrac.message.HomeMessage;
 
 /**
@@ -36,7 +35,7 @@ public class MainController {
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
 	@RequestMapping(value = "/devices", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody AbstractMessage getDevices() {
+	public @ResponseBody HomeMessage getAccountUserDevices() {
 		logger.debug("call getDevices:");
 		
 		return new HomeMessage(100, "Congratulations!", "You have accessed a Basic Auth protected resource.");
