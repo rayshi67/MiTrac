@@ -31,7 +31,7 @@ public class SecurityManager implements UserDetailsService {
 
     private static Log LOG = LogFactory.getLog(SecurityManager.class);
     
-    private static final String USER_ACCOUNT_SEPARATOR = "@";
+    public static final String USER_ACCOUNT_SEPARATOR = "@";
     
     private UserDao userDao;
 
