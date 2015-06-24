@@ -19,33 +19,9 @@ package com.jiesoft.mitrac.common;
  * @author Ray Shi
  */
 
-public class AbstractMessage {
+public enum ResultCodeEnum {
 	
-	protected ResultCodeEnum code;
-	protected String message;
-
-	protected AbstractMessage() {
-	}
-	
-	protected AbstractMessage(final ResultCodeEnum code, final String message) {
-		this.code = code;
-		this.message = message;
-	}
-
-	public ResultCodeEnum getCode() {
-		return code;
-	}
-
-	public void setCode(ResultCodeEnum code) {
-		this.code = code;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
+	Success,
+	Error
 
 }

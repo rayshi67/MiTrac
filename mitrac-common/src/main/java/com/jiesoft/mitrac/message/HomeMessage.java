@@ -13,59 +13,60 @@
  */
 package com.jiesoft.mitrac.message;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.jiesoft.mitrac.common.AbstractMessage;
+import com.jiesoft.mitrac.common.ResultCodeEnum;
+import com.jiesoft.mitrac.domain.bo.Account;
+import com.jiesoft.mitrac.domain.bo.Device;
+import com.jiesoft.mitrac.domain.bo.User;
 
 /**
- * Message class.
+ * Home Message class.
  * 
  * @author Ray Shi
  */
 
 @XmlRootElement(name = "homeMessage")
 public class HomeMessage extends AbstractMessage {
-	private long id;
+	private Account account;
 
-	private String subject;
+	private User user;
 
-	private String text;
+	private List<Device> devices;
 
 	public HomeMessage() {
 		super();
 	}
-
-	public HomeMessage(long id, String subject, String text) {
-		this.id = id;
-		this.subject = subject;
-		this.text = text;
+	
+	public HomeMessage(final ResultCodeEnum code, final String message) {
+		super(code, message);
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public Account getAccount() {
+		return account;
 	}
 
-	public long getId() {
-		return id;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
-	public void setSubject(String subject) {
-		this.subject = subject;
+	public User getUser() {
+		return user;
 	}
 
-	public String getSubject() {
-		return subject;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public List<Device> getDevices() {
+		return devices;
 	}
 
-	public String getText() {
-		return text;
+	public void setDevices(List<Device> devices) {
+		this.devices = devices;
 	}
 
-	public String toString() {
-		return "Id:[" + this.getId() + "] Subject:[" + this.getSubject() + "] Text:[" + this.getText() + "]";
-	}
 }

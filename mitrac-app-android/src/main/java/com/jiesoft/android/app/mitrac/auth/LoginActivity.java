@@ -38,6 +38,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
+import com.jiesoft.mitrac.common.ResultCodeEnum;
 import com.jiesoft.mitrac.message.HomeMessage;
 
 import com.jiesoft.android.app.mitrac.R;
@@ -94,7 +95,7 @@ public class LoginActivity extends AbstractAsyncActivity {
      * @param response
      */
 	private void displayResponse(HomeMessage response) {
-		Toast.makeText(this, response.getText(), Toast.LENGTH_LONG).show();
+		Toast.makeText(this, "Response message received", Toast.LENGTH_LONG).show();
 	}
 	
 	private class GetAccountUserDevicesTask extends AsyncTask<Void, Void, HomeMessage> {
@@ -136,10 +137,10 @@ public class LoginActivity extends AbstractAsyncActivity {
 				return response.getBody();
 			} catch (HttpClientErrorException e) {
 				Log.e(TAG, e.getLocalizedMessage(), e);
-				return new HomeMessage(0, e.getStatusText(), e.getLocalizedMessage());
+				return new HomeMessage(ResultCodeEnum.Error, e.getLocalizedMessage());
 			} catch (ResourceAccessException e) {
 				Log.e(TAG, e.getLocalizedMessage(), e);
-				return new HomeMessage(0, e.getClass().getSimpleName(), e.getLocalizedMessage());
+				return new HomeMessage(ResultCodeEnum.Error, e.getLocalizedMessage());
 			}
 		}
 
@@ -148,7 +149,7 @@ public class LoginActivity extends AbstractAsyncActivity {
 			dismissProgressDialog();
 			//displayResponse(result);
 			
-			if (100 == result.getId()) {
+			if (ResultCodeEnum.Success == result.getCode()) {
 				// FIXME
 				session.createLoginSession("Android Hive", "anroidhive@gmail.com");
 			
