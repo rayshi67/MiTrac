@@ -12,7 +12,7 @@
 	<!-- MySQL data source -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://192.168.1.109:3306/gts" />
+		<property name="url" value="jdbc:mysql://110.22.24.107:3306/gts" />
 		<property name="username" value="gts" />
 		<property name="password" value="opengts" />
 	</bean>
