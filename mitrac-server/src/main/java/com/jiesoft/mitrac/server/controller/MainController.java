@@ -29,10 +29,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jiesoft.mitrac.common.ResultCodeEnum;
 import com.jiesoft.mitrac.dao.AccountDao;
+import com.jiesoft.mitrac.dao.DeviceDao;
 import com.jiesoft.mitrac.dao.DeviceGroupDao;
 import com.jiesoft.mitrac.dao.UserDao;
 import com.jiesoft.mitrac.dao.UserDeviceGroupDao;
 import com.jiesoft.mitrac.domain.bo.Account;
+import com.jiesoft.mitrac.domain.bo.Device;
 import com.jiesoft.mitrac.domain.bo.DeviceGroup;
 import com.jiesoft.mitrac.message.HomeMessage;
 import com.jiesoft.mitrac.server.security.SecurityManager;
@@ -59,6 +61,9 @@ public class MainController {
 
 	@Autowired
     private DeviceGroupDao deviceGroupDao;
+	
+	@Autowired
+    private DeviceDao deviceDao;
 	
 	@Transactional(readOnly=true)
 	@RequestMapping(value = "/devices", method = RequestMethod.GET, produces = "application/json")
@@ -116,11 +121,25 @@ public class MainController {
 			}
 		}
 		
+		// load devices
+		
+		List<Device> devices = new ArrayList<Device>();
+		
+		if (!deviceGroups.isEmpty()) {
+			List<String> groupIds = new ArrayList<String>();
+			for (DeviceGroup deviceGroup : deviceGroups) {
+				groupIds.add(deviceGroup.getId().getGroupId());
+			}
+			
+			devices.addAll(deviceDao.findDevicesByGroupIds(groupIds, account.getAccountId()));
+		}
+		
 		HomeMessage message = new HomeMessage(ResultCodeEnum.Success, null);
 		
 		message.setUser(user);
 		message.setAccount(account);
 		message.setDeviceGroups(deviceGroups);
+		message.setDevices(devices);
 		
 		return message;
 	}

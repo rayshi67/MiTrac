@@ -82,4 +82,8 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean id="deviceDao" class="com.jiesoft.mitrac.dao.impl.DeviceDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 </beans>
