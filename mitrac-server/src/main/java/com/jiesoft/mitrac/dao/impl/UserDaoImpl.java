@@ -32,18 +32,19 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public User findByUserName(final String username) {
-		User retval = null;
-		
-		List<User> users = sessionFactory.getCurrentSession()
+	public List<User> findByUserName(final String username) {		
+		return sessionFactory.getCurrentSession()
 				.createQuery("FROM User WHERE userId = :userId")
 				.setParameter("userId", username).list();
- 
-		if (users.size() > 0) {
-			retval = users.get(0);
-		}
-		
-		return retval;
+	}
+
+	@Override
+	public User findByUserAccountName(final String username, final String accountName) {
+		return (User) sessionFactory.getCurrentSession()
+				.createQuery("FROM User WHERE userId = :userId AND accountId = :accountId")
+				.setParameter("userId", username)
+				.setParameter("accountId", accountName)
+				.uniqueResult();
 	}
 
 }

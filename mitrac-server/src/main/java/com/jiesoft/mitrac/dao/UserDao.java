@@ -14,6 +14,8 @@
 
 package com.jiesoft.mitrac.dao;
 
+import java.util.List;
+
 import com.jiesoft.mitrac.domain.bo.User;
 
 /**
@@ -24,6 +26,8 @@ import com.jiesoft.mitrac.domain.bo.User;
 
 public interface UserDao {
 	
-	User findByUserName(String username);
+	List<User> findByUserName(String username);
+
+	User findByUserAccountName(String username, String accountName);
 
 }

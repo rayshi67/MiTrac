@@ -13,10 +13,11 @@
  */
 package com.jiesoft.mitrac.server.controller;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -57,29 +58,30 @@ public class MainController {
 		// load user
 		
 		final String userId = StringUtils.substringBefore(authentication.getName(), SecurityManager.USER_ACCOUNT_SEPARATOR);
-
+		final String accountId = StringUtils.substringAfter(authentication.getName(), SecurityManager.USER_ACCOUNT_SEPARATOR);
+		
     	logger.debug("auth userId = " + userId);
-    	
-    	com.jiesoft.mitrac.domain.bo.User user = null;
-   
-    	if (StringUtils.isEmpty(userId)) {  // no username
-    		user = null;
-    	} else {
-    		user = userDao.findByUserName(userId);
-    		user.setPassword(null);    		
-    	}
-    	
-    	// load account
-
-		String accountId = StringUtils.substringAfter(authentication.getName(), SecurityManager.USER_ACCOUNT_SEPARATOR);
-		
-		if (user != null) {
-			accountId = user.getId().getAccountId();
-		}
-		
     	logger.debug("auth accountId = " + accountId);
     	
-		Account account = accountDao.findByAccountName(accountId);
+    	com.jiesoft.mitrac.domain.bo.User user = null;
+    	Account account = null;
+   
+    	if (StringUtils.isEmpty(userId)) {  // only account name
+    		account = accountDao.findByAccountName(accountId);
+    	} else {
+    		if (StringUtils.isEmpty(accountId)) {  // only username that is unique
+    			final List<com.jiesoft.mitrac.domain.bo.User> users = userDao.findByUserName(userId);
+    			user = users.get(0);	
+    		} else {
+    			user = userDao.findByUserAccountName(userId, accountId);
+    		}
+    		
+    		// hide password
+    		user.setPassword(null);
+    		
+        	// load account
+    		account = accountDao.findByAccountName(user.getId().getAccountId());
+    	}
 
 		HomeMessage message = new HomeMessage(ResultCodeEnum.Success, null);
 		

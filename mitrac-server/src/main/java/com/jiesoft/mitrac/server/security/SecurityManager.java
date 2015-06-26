@@ -118,39 +118,49 @@ public class SecurityManager implements UserDetailsService {
      * @return a Pair<User, Account> object
      */
     private Pair<com.jiesoft.mitrac.domain.bo.User, Account> checkForUserAccount(final String userAccountId) {
-    	if (!StringUtils.contains(userAccountId, USER_ACCOUNT_SEPARATOR)) {  // no account
-    		final com.jiesoft.mitrac.domain.bo.User user = userDao.findByUserName(userAccountId);
-    		
-    		if (user == null) {
-    			return new Pair<com.jiesoft.mitrac.domain.bo.User, Account>(null, null);
-    		}
-    		
-    		final Account account = accountDao.findByAccountName(user.getId().getAccountId());
-    		
-    		return new Pair<com.jiesoft.mitrac.domain.bo.User, Account>(user, account);
+    	if (!StringUtils.contains(userAccountId, USER_ACCOUNT_SEPARATOR)) {  // no account name
+    		return getUserAccountByUserName(userAccountId);
     	}
 
-    	com.jiesoft.mitrac.domain.bo.User user = null;
-    	Account account = null;
-    	
 		final String userId = StringUtils.substringBefore(userAccountId, USER_ACCOUNT_SEPARATOR);
-		
-    	if (StringUtils.isEmpty(userId)) {  // no username
-    		user = null;
-    	} else {
-    		user = userDao.findByUserName(userId);
-    	}
-		
 		final String accountId = StringUtils.substringAfter(userAccountId, USER_ACCOUNT_SEPARATOR);
 		
-    	if (StringUtils.isEmpty(accountId)) {  // no account
-    		account = null;
-    	} else {
-    		account = accountDao.findByAccountName(accountId);
+    	if (StringUtils.isEmpty(userId)) {  // no username
+        	Account account = null;
+        	if (StringUtils.isNotEmpty(accountId)) {  // account name exist
+        		account = accountDao.findByAccountName(accountId);
+        	}
+    		
+        	return new Pair<com.jiesoft.mitrac.domain.bo.User, Account>(null, account);
     	}
+    	
+    	if (StringUtils.isEmpty(accountId)) {  // account name empty
+    		return getUserAccountByUserName(userAccountId);
+    	}	
+
+    	com.jiesoft.mitrac.domain.bo.User user = userDao.findByUserAccountName(userId, accountId);
 		
+    	if (user == null) {  // user not found
+    		return new Pair<com.jiesoft.mitrac.domain.bo.User, Account>(null, null);
+    	}
+    	
+    	final Account account = accountDao.findByAccountName(accountId);
+    			
     	return new Pair<com.jiesoft.mitrac.domain.bo.User, Account>(user, account);
     }
+
+	private Pair<com.jiesoft.mitrac.domain.bo.User, Account> getUserAccountByUserName(final String userId) {
+		final List<com.jiesoft.mitrac.domain.bo.User> users = userDao.findByUserName(userId);
+		
+		if (users == null || users.size() != 1) {
+			return new Pair<com.jiesoft.mitrac.domain.bo.User, Account>(null, null);
+		}
+		
+		final com.jiesoft.mitrac.domain.bo.User user = users.get(0);
+		final Account account = accountDao.findByAccountName(user.getId().getAccountId());
+		
+		return new Pair<com.jiesoft.mitrac.domain.bo.User, Account>(user, account);
+	}
     
 	public void setUserDao(final UserDao userDao) {
 		this.userDao = userDao;
