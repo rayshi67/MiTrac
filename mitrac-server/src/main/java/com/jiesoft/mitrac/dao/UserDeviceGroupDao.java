@@ -26,6 +26,6 @@ import com.jiesoft.mitrac.domain.bo.DeviceGroup;
 
 public interface UserDeviceGroupDao {
 	
-	List<DeviceGroup> findDeviceGroupsByUserName(String username);
+	List<DeviceGroup> findDeviceGroupsByUserAccountName(String username, String accountName);
 
 }

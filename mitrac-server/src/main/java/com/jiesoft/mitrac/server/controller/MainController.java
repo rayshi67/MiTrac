@@ -13,6 +13,7 @@
  */
 package com.jiesoft.mitrac.server.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -28,8 +29,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jiesoft.mitrac.common.ResultCodeEnum;
 import com.jiesoft.mitrac.dao.AccountDao;
+import com.jiesoft.mitrac.dao.DeviceGroupDao;
 import com.jiesoft.mitrac.dao.UserDao;
+import com.jiesoft.mitrac.dao.UserDeviceGroupDao;
 import com.jiesoft.mitrac.domain.bo.Account;
+import com.jiesoft.mitrac.domain.bo.DeviceGroup;
 import com.jiesoft.mitrac.message.HomeMessage;
 import com.jiesoft.mitrac.server.security.SecurityManager;
 
@@ -49,7 +53,13 @@ public class MainController {
 
 	@Autowired
     private AccountDao accountDao;
+	
+	@Autowired
+    private UserDeviceGroupDao userDeviceGroupDao;
 
+	@Autowired
+    private DeviceGroupDao deviceGroupDao;
+	
 	@Transactional(readOnly=true)
 	@RequestMapping(value = "/devices", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody HomeMessage getAccountUserDevices(Authentication authentication) {
@@ -83,17 +93,34 @@ public class MainController {
     		account = accountDao.findByAccountName(user.getId().getAccountId());
     	}
 
-		HomeMessage message = new HomeMessage(ResultCodeEnum.Success, null);
-		
-		message.setUser(user);
-		message.setAccount(account);
-		
-		// FIXME load devices
+		// load device groups
 		
 		// 1) if user exists, get DeviceGroup ID from the GroupList table if any,
 		// 1.1) otherwise fall back to all the DeviceGroup IDs available to its account in the DeviceGroup table
 		// 2) if user does not exist, same as 1.1 
 		
+		List<DeviceGroup> deviceGroups = new ArrayList<DeviceGroup>();
+		
+		if (user == null) {
+			deviceGroups.addAll(deviceGroupDao.findDeviceGroupsByAccountName(account.getAccountId()));
+		} else {
+			final List<DeviceGroup> userDeviceGroups = 
+					userDeviceGroupDao.findDeviceGroupsByUserAccountName(
+							user.getId().getUserId(), 
+							user.getId().getAccountId());
+			
+			if (userDeviceGroups.isEmpty()) {
+				deviceGroups.addAll(deviceGroupDao.findDeviceGroupsByAccountName(account.getAccountId()));
+			} else {
+				deviceGroups.addAll(userDeviceGroups);
+			}
+		}
+		
+		HomeMessage message = new HomeMessage(ResultCodeEnum.Success, null);
+		
+		message.setUser(user);
+		message.setAccount(account);
+		message.setDeviceGroups(deviceGroups);
 		
 		return message;
 	}

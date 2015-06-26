@@ -73,5 +73,13 @@
 	<bean id="accountDao" class="com.jiesoft.mitrac.dao.impl.AccountDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<bean id="userDeviceGroupDao" class="com.jiesoft.mitrac.dao.impl.UserDeviceGroupDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
+	<bean id="deviceGroupDao" class="com.jiesoft.mitrac.dao.impl.DeviceGroupDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 </beans>

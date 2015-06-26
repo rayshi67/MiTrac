@@ -76,7 +76,6 @@ public class LoginActivity extends AbstractAsyncActivity {
         
         //Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
         
-        
         // Login button
         btnLogin = (Button) findViewById(R.id.btnLogin);
         

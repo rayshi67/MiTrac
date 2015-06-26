@@ -14,39 +14,27 @@
 
 package com.jiesoft.mitrac.dao.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.jiesoft.mitrac.dao.AbstractDao;
-import com.jiesoft.mitrac.dao.UserDeviceGroupDao;
+import com.jiesoft.mitrac.dao.DeviceGroupDao;
 import com.jiesoft.mitrac.domain.bo.DeviceGroup;
 
 /**
  * @author Ray Shi
  */
 
-public class UserDeviceGroupDaoImpl extends AbstractDao implements UserDeviceGroupDao {
+public class DeviceGroupDaoImpl extends AbstractDao implements DeviceGroupDao {
 
-	public UserDeviceGroupDaoImpl() {
+	public DeviceGroupDaoImpl() {
 		super();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<DeviceGroup> findDeviceGroupsByUserAccountName(final String username, final String accountName) {
-		final List<String> deviceGroupIds = sessionFactory.getCurrentSession()
-				.createQuery("SELECT id.groupId FROM GroupList WHERE id.userId = :userId AND id.accountId = :accountId")
-				.setParameter("userId", username)
-				.setParameter("accountId", accountName)
-				.list();
-		
-		if (deviceGroupIds.isEmpty()) {
-			return new ArrayList<DeviceGroup>();
-		}
-		
+	public List<DeviceGroup> findDeviceGroupsByAccountName(final String accountName) {
 		return sessionFactory.getCurrentSession()
-				.createQuery("FROM DeviceGroup WHERE id.groupId IN (:deviceGroupIds) AND id.accountId = :accountId")
-				.setParameterList("deviceGroupIds", deviceGroupIds)
+				.createQuery("FROM DeviceGroup WHERE id.accountId = :accountId")
 				.setParameter("accountId", accountName)
 				.list();
 	}
