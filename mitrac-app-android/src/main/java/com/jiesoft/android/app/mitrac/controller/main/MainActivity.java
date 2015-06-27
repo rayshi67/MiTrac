@@ -51,11 +51,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import com.jiesoft.android.app.mitrac.R;
 import com.jiesoft.android.app.mitrac.auth.SessionManager;
 import com.jiesoft.android.app.mitrac.common.drawer.DrawerItem;
 import com.jiesoft.android.app.mitrac.common.drawer.DrawerListAdapter;
+import com.jiesoft.mitrac.message.HomeMessage;
 
 /**
  * @author Ray Shi
@@ -64,12 +64,14 @@ import com.jiesoft.android.app.mitrac.common.drawer.DrawerListAdapter;
 public class MainActivity extends FragmentActivity implements
         OnMarkerClickListener,
         OnMapReadyCallback {
-	
+
+	public static final String EXTRA_HOME_MESSAGE = "com.jiesoft.android.app.mitrac.home_message";
+
+	private static final String TAG_MAP_FRAGMENT = "MAP-FRAGMENT";
+
 	private static final int DRAW_ITEM_HOME = 0;
 	private static final int DRAW_ITEM_LOGOUT = 1;
 
-	private static final String TAG_MAP_FRAGMENT = "MAP-FRAGMENT";
-	
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -98,6 +100,8 @@ public class MainActivity extends FragmentActivity implements
 
     private GoogleMap mMap;
 
+    private HomeMessage homeMessage;
+    
     private Marker mPerth;
     private Marker mSydney;
     private Marker mBrisbane;
@@ -128,6 +132,9 @@ public class MainActivity extends FragmentActivity implements
          * logged in
          * */
         session.checkLogin();
+        
+        // get extras
+        homeMessage = (HomeMessage) getIntent().getSerializableExtra(EXTRA_HOME_MESSAGE);
         
         // set up menu
         mTitle = mDrawerTitle = getTitle();

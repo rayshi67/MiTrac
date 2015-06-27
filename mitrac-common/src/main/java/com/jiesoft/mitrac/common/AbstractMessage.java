@@ -19,7 +19,9 @@ package com.jiesoft.mitrac.common;
  * @author Ray Shi
  */
 
-public class AbstractMessage {
+public class AbstractMessage implements java.io.Serializable {
+	
+	private static final long serialVersionUID = -1L;
 	
 	protected ResultCodeEnum code;
 	protected String message;

@@ -39,8 +39,8 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
 import com.jiesoft.mitrac.common.ResultCodeEnum;
+import com.jiesoft.mitrac.common.StringUtilsExt;
 import com.jiesoft.mitrac.message.HomeMessage;
-
 import com.jiesoft.android.app.mitrac.R;
 import com.jiesoft.android.app.mitrac.common.AbstractAsyncActivity;
 import com.jiesoft.android.app.mitrac.controller.main.MainActivity;
@@ -93,6 +93,7 @@ public class LoginActivity extends AbstractAsyncActivity {
      * @deprecated used for testing only
      * @param response
      */
+	@SuppressWarnings("unused")
 	private void displayResponse(HomeMessage response) {
 		Toast.makeText(this, "Response message received", Toast.LENGTH_LONG).show();
 	}
@@ -149,11 +150,15 @@ public class LoginActivity extends AbstractAsyncActivity {
 			//displayResponse(result);
 			
 			if (ResultCodeEnum.Success == result.getCode()) {
-				// FIXME
-				session.createLoginSession("Android Hive", "anroidhive@gmail.com");
+
+				session.createLoginSession(
+						StringUtilsExt.isEmpty(result.getAccount().getDisplayName()) ?
+								result.getAccount().getAccountId() : result.getAccount().getDisplayName(),
+						result.getAccount().getContactEmail());
 			
 				// Staring MainActivity
 				Intent i = new Intent(getApplicationContext(), MainActivity.class);
+				i.putExtra(MainActivity.EXTRA_HOME_MESSAGE, result);
 				startActivity(i);
 				finish();	
 			} else {

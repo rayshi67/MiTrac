@@ -60,7 +60,7 @@ public class SessionManager {
     /**
      * Create login session
      * */
-    public void createLoginSession(String name, String email){
+    public void createLoginSession(final String name, final String email){
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
          
