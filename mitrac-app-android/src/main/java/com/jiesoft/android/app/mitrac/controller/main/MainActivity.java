@@ -55,6 +55,8 @@ import com.jiesoft.android.app.mitrac.R;
 import com.jiesoft.android.app.mitrac.auth.SessionManager;
 import com.jiesoft.android.app.mitrac.common.drawer.DrawerItem;
 import com.jiesoft.android.app.mitrac.common.drawer.DrawerListAdapter;
+import com.jiesoft.mitrac.common.StringUtilsExt;
+import com.jiesoft.mitrac.domain.bo.Device;
 import com.jiesoft.mitrac.message.HomeMessage;
 
 /**
@@ -312,7 +314,7 @@ public class MainActivity extends FragmentActivity implements
         // Hide the zoom controls as the button panel will cover it.
         mMap.getUiSettings().setZoomControlsEnabled(false);
 
-        // Add lots of markers to the map.
+        // Add device markers to the map.
         addMarkersToMap();
 
         // Set listeners for marker events.  See the bottom of this class for their behavior.
@@ -350,37 +352,16 @@ public class MainActivity extends FragmentActivity implements
     }
 
     private void addMarkersToMap() {
-        // Uses a colored icon.
-        mBrisbane = mMap.addMarker(new MarkerOptions()
-                .position(BRISBANE)
-                .title("Brisbane")
-                .snippet("Population: 2,074,200")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-
-        // Uses a custom icon with the info window popping out of the center of the icon.
-        mSydney = mMap.addMarker(new MarkerOptions()
-                .position(SYDNEY)
-                .title("Sydney")
-                .snippet("Population: 4,627,300")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.arrow))
-                .infoWindowAnchor(0.5f, 0.5f));
-
-        // Creates a draggable marker. Long press to drag.
-        mMelbourne = mMap.addMarker(new MarkerOptions()
-                .position(MELBOURNE)
-                .title("Melbourne")
-                .snippet("Population: 4,137,400")
-                .draggable(true));
-
-        // A few more markers for good measure.
-        mPerth = mMap.addMarker(new MarkerOptions()
-                .position(PERTH)
-                .title("Perth")
-                .snippet("Population: 1,738,800"));
-        mAdelaide = mMap.addMarker(new MarkerOptions()
-                .position(ADELAIDE)
-                .title("Adelaide")
-                .snippet("Population: 1,213,000"));
+    	if (homeMessage == null || homeMessage.getDevices() == null) {
+    		return;
+    	}
+    	
+    	for (Device device : homeMessage.getDevices()) {
+    		Marker m = mMap.addMarker(new MarkerOptions()
+    				.position(new LatLng(device.getLastValidLatitude(), device.getLastValidLongitude()))
+    				.title(StringUtilsExt.isEmpty(device.getDisplayName()) ? device.getId().getDeviceId() : device.getDisplayName())
+    				.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+    	}
     }
 
     @SuppressWarnings("unused")
