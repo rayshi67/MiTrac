@@ -41,12 +41,15 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -312,48 +315,72 @@ public class MainActivity extends FragmentActivity implements
         mMap = map;
 
         // Hide the zoom controls as the button panel will cover it.
-        mMap.getUiSettings().setZoomControlsEnabled(false);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
 
         // Add device markers to the map.
-        addMarkersToMap();
+        final List<Marker> markers = addMarkersToMap();
 
         // Set listeners for marker events.  See the bottom of this class for their behavior.
         mMap.setOnMarkerClickListener(this);
 
         // Override the default content description on the view, for accessibility mode.
         // Ideally this string would be localised.
-        map.setContentDescription("Map with lots of markers.");
+        map.setContentDescription("Map with the devices.");
 
         // Pan to see all markers in view.
-        // Cannot zoom to bounds until the map has a size.
-        final View mapView = getSupportFragmentManager().findFragmentByTag(TAG_MAP_FRAGMENT).getView();
-        if (mapView.getViewTreeObserver().isAlive()) {
-            mapView.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-                @SuppressWarnings("deprecation") // We use the new method when supported
-                @SuppressLint("NewApi") // We check which build version we are using.
-                @Override
-                public void onGlobalLayout() {
-                    LatLngBounds bounds = new LatLngBounds.Builder()
-                            .include(PERTH)
-                            .include(SYDNEY)
-                            .include(ADELAIDE)
-                            .include(BRISBANE)
-                            .include(MELBOURNE)
-                            .build();
-                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-                      mapView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    } else {
-                      mapView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    }
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 50));
-                }
-            });
-        }
+        mMap.setOnCameraChangeListener(new OnCameraChangeListener() {
+            @Override
+            public void onCameraChange(CameraPosition arg0) {
+            	if (markers.isEmpty()) {
+            		return;
+            	}
+            	
+            	LatLngBounds.Builder builder = new LatLngBounds.Builder();
+            	
+            	for (Marker marker : markers) {
+            	    builder.include(marker.getPosition());
+            	}
+            	
+            	LatLngBounds bounds = builder.build();
+            	
+            	bounds = adjustBoundsForMaxZoomLevel(bounds);
+            	
+                // Move camera
+            	mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 50));
+                // Remove listener to prevent position reset on camera move.
+                mMap.setOnCameraChangeListener(null);
+            }
+            
+            private LatLngBounds adjustBoundsForMaxZoomLevel(final LatLngBounds bounds) {
+            	LatLngBounds retval = bounds;
+            	
+            	LatLng sw = bounds.southwest;
+            	LatLng ne = bounds.northeast;
+            	double deltaLat = Math.abs(sw.latitude - ne.latitude);
+            	double deltaLon = Math.abs(sw.longitude - ne.longitude);
+
+            	final double zoomN = 0.005; // minimum zoom coefficient
+            	if (deltaLat < zoomN) {
+            	    sw = new LatLng(sw.latitude - (zoomN - deltaLat / 2), sw.longitude);
+            	    ne = new LatLng(ne.latitude + (zoomN - deltaLat / 2), ne.longitude);
+            	    retval = new LatLngBounds(sw, ne);
+            	}
+            	else if (deltaLon < zoomN) {
+            	    sw = new LatLng(sw.latitude, sw.longitude - (zoomN - deltaLon / 2));
+            	    ne = new LatLng(ne.latitude, ne.longitude + (zoomN - deltaLon / 2));
+            	    retval = new LatLngBounds(sw, ne);
+            	}
+
+            	return retval;
+            }
+        });
     }
 
-    private void addMarkersToMap() {
+    private List<Marker> addMarkersToMap() {
+    	List<Marker> markers = new ArrayList<Marker>();
+
     	if (homeMessage == null || homeMessage.getDevices() == null) {
-    		return;
+    		return markers;
     	}
     	
     	for (Device device : homeMessage.getDevices()) {
@@ -361,7 +388,11 @@ public class MainActivity extends FragmentActivity implements
     				.position(new LatLng(device.getLastValidLatitude(), device.getLastValidLongitude()))
     				.title(StringUtilsExt.isEmpty(device.getDisplayName()) ? device.getId().getDeviceId() : device.getDisplayName())
     				.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+    		
+    		markers.add(m);
     	}
+    	
+    	return markers;
     }
 
     @SuppressWarnings("unused")
