@@ -11,7 +11,7 @@
 		
 	<groupId>com.jiesoft.mitrac.server</groupId>
 	<artifactId>mitrac-server</artifactId>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	
 	<properties>
 		<start-class>com.jiesoft.mitrac.server.Application</start-class>
@@ -103,25 +103,25 @@
 		</dependency>
 	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${org.springframework.boot-version}</version>
-      			<configuration>
-        			<mainClass>${start-class}</mainClass>
-        			<layout>ZIP</layout>
-      			</configuration>
-			    <executions>
-			        <execution>
-			            <goals>
-			                <goal>repackage</goal>
-			            </goals>
-			        </execution>
-			    </executions>
-			</plugin>
-		</plugins>
-	</build>
+<!-- 	<build> -->
+<!-- 		<plugins> -->
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.springframework.boot</groupId> -->
+<!-- 				<artifactId>spring-boot-maven-plugin</artifactId> -->
+<!-- 				<version>${org.springframework.boot-version}</version> -->
+<!--       			<configuration> -->
+<!--         			<mainClass>${start-class}</mainClass> -->
+<!--         			<layout>ZIP</layout> -->
+<!--       			</configuration> -->
+<!-- 			    <executions> -->
+<!-- 			        <execution> -->
+<!-- 			            <goals> -->
+<!-- 			                <goal>repackage</goal> -->
+<!-- 			            </goals> -->
+<!-- 			        </execution> -->
+<!-- 			    </executions> -->
+<!-- 			</plugin> -->
+<!-- 		</plugins> -->
+<!-- 	</build> -->
 
 </project>
