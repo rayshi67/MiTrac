@@ -16,6 +16,8 @@ package com.jiesoft.mitrac.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -27,11 +29,16 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan("com.jiesoft.mitrac")
 @EnableAutoConfiguration
 @EnableTransactionManagement
-@ImportResource("spring-database.xml")
-public class Application {
+@ImportResource("classpath:spring-database.xml")
+public class Application extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
+	
+	@Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(Application.class);
+    }
 
 }
