@@ -45,7 +45,6 @@ import com.jiesoft.mitrac.server.security.SecurityManager;
  * @author Ray Shi
  */
 @Controller
-@RequestMapping("/mitrac")
 public class MainController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
