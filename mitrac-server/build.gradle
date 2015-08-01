@@ -12,10 +12,20 @@ apply plugin: "java"
 apply plugin: "eclipse"
 apply plugin: "idea"
 apply plugin: "spring-boot"
+apply plugin: "war"
+
+war {
+	baseName = "mitrac-server"
+	version =  "1.0-SNAPSHOT"
+}
 
 jar {
-	baseName = "spring-android-basic-auth-server"
-	version =  "0.1.0"
+	baseName = "mitrac-server"
+	version =  "1.0-SNAPSHOT"
+}
+
+bootRepackage {
+    mainClass = 'com.jiesoft.mitrac.server.Application'
 }
 
 repositories {
@@ -24,12 +34,20 @@ repositories {
 }
 
 dependencies {
-	compile("org.springframework.boot:spring-boot-starter-web")
-	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-	compile("org.springframework.boot:spring-boot-starter-security")
-	testCompile("org.springframework.boot:spring-boot-starter-test")
+	compile project(':mitrac-common')
+	compile("org.springframework.boot:spring-boot-starter-web:1.0.2.RELEASE")
+	compile("org.springframework.boot:spring-boot-starter-security:1.0.2.RELEASE")
+	compile("org.springframework:spring-tx:4.0.3.RELEASE")
+	compile("org.springframework:spring-aspects:4.0.3.RELEASE")
+	compile("org.springframework:spring-orm:4.0.3.RELEASE")
+	compile("org.hibernate:hibernate-core:4.3.10.Final")
+	compile("mysql:mysql-connector-java:5.1.35")
+	compile("commons-dbcp:commons-dbcp:1.4")
+	compile("org.apache.commons:commons-lang3:3.4")		
+	compile("org.apache.commons:commons-collections4:4.0")
+	testCompile("org.springframework.boot:spring-boot-starter-test:1.0.2.RELEASE")
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = "1.11"
+	gradleVersion = "2.10"
 }
