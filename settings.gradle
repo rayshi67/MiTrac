@@ -1,0 +1,2 @@
+include 'mitrac-common'
+include 'mitrac-server'
