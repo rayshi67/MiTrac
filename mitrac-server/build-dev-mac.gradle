@@ -1,0 +1,3 @@
+ext {
+	jdbcConnectionUrl="jdbc:mysql://110.22.24.107:3306/gts"
+}

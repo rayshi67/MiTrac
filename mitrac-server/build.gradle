@@ -1,3 +1,13 @@
+if (project.hasProperty('env') && project.getProperty('env') == 'prod') {
+    apply from: 'build-prod.gradle'
+} else if (project.hasProperty('env') && project.getProperty('env') == 'dev.win') { 
+    apply from: 'build-dev-win.gradle'
+} else if (project.hasProperty('env') && project.getProperty('env') == 'dev.mac') { 
+    apply from: 'build-dev-mac.gradle'
+} else {
+    apply from: 'build-dev-mac.gradle'
+}
+
 buildscript {
 	repositories {
 		mavenCentral()
@@ -17,6 +27,7 @@ apply plugin: "war"
 war {
 	baseName = "mitrac-server"
 	version =  "1.0-SNAPSHOT"
+	archiveName 'mitrac.war'
 }
 
 jar {
@@ -26,6 +37,10 @@ jar {
 
 bootRepackage {
     mainClass = 'com.jiesoft.mitrac.server.Application'
+}
+
+processResources {
+    expand project.properties
 }
 
 repositories {
