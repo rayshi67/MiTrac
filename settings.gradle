@@ -1,2 +1,3 @@
 include 'mitrac-common'
 include 'mitrac-server'
+include 'mitrac-app-android'

@@ -16,6 +16,8 @@ repositories {
 }
 
 dependencies {
+	compile project(':mitrac-common')
+	compile 'com.google.android.gms:play-services:6.5.87'
     compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
     compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.11'
 }
@@ -48,6 +50,9 @@ android {
         exclude 'META-INF/license.txt'
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/notice.txt'
+    }
+    lintOptions {
+          abortOnError false
     }
 }
 
