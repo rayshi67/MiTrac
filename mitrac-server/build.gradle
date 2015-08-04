@@ -36,7 +36,7 @@ jar {
 }
 
 bootRepackage {
-    mainClass = 'com.jiesoft.mitrac.server.Application'
+    mainClassName = 'com.jiesoft.mitrac.server.Application'
 }
 
 processResources {
