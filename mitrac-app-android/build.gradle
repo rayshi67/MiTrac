@@ -51,6 +51,10 @@ android {
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/notice.txt'
     }
+    productFlavors{
+ 		mac {}
+ 		win {}
+	}
     lintOptions {
           abortOnError false
     }

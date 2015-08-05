@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- server context -->
+    <string name="base_uri">http://192.168.1.198:8080/mitrac</string>
+	
+</resources>

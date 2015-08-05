@@ -23,5 +23,7 @@
     </array>
     
     <string name="desc_list_item_icon">Item Icon</string>
+    
+    <string name="google_maps_v2_api_key">AIzaSyDEAdpe1EIJHdRdre9rUDlwsg0g-SGSD54</string>
 
 </resources>
